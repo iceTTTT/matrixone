@@ -157,6 +157,10 @@ func getTypeFromAst(ctx context.Context, typ tree.ResolvableTypeReference) (*pla
 		case defines.MYSQL_TYPE_LONG_BLOB:
 			return &plan.Type{Id: int32(types.T_blob)}, nil
 		case defines.MYSQL_TYPE_ENUM:
+			// Check explicit cast.
+			if n.InternalType.Scale == -1 {
+				return nil, moerr.NewInvalidInput(ctx, "Can not cast to enum type explicitly")
+			}
 			if len(n.InternalType.EnumValues) > types.MaxEnumSize {
 				return nil, moerr.NewInvalidInput(ctx, "Too many values for enum type")
 			}

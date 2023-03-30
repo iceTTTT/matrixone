@@ -6642,6 +6642,12 @@ when_clause:
 
 mo_cast_type:
     column_type
+{
+    s := $$
+    if s.InternalType.FamilyString == "enum" {
+        s.InternalType.Scale = -1     
+    }
+}
 |   SIGNED integer_opt
     {
         name := $1
