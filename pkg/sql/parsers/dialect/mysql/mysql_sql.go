@@ -1104,11 +1104,7 @@ const yyEofCode = 1
 const yyErrCode = 2
 const yyInitialStackSize = 16
 
-<<<<<<< Updated upstream
 //line mysql_sql.y:9125
-=======
-//line mysql_sql.y:9075
->>>>>>> Stashed changes
 
 //line yacctab:1
 var yyExca = [...]int{
@@ -5135,11 +5131,7 @@ var yyPgo = [...]int{
 	212, 2406,
 }
 
-<<<<<<< Updated upstream
 //line mysql_sql.y:9125
-=======
-//line mysql_sql.y:9075
->>>>>>> Stashed changes
 type yySymType struct {
 	union interface{}
 	id    int
@@ -15877,15 +15869,9 @@ yydefault:
 			}
 		}
 		yyVAL.union = yyLOCAL
-<<<<<<< Updated upstream
 	case 1106:
 		yyDollar = yyS[yypt-1 : yypt+1]
 //line mysql_sql.y:6676
-=======
-	case 1102:
-		yyDollar = yyS[yypt-1 : yypt+1]
-//line mysql_sql.y:6650
->>>>>>> Stashed changes
 		{
 			s := yyVAL.columnTypeUnion()
 			if strings.ToLower(s.InternalType.FamilyString) == "enum" {
@@ -15896,17 +15882,10 @@ yydefault:
 				s.InternalType.Scale = -1
 			}
 		}
-<<<<<<< Updated upstream
 	case 1107:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.T
 //line mysql_sql.y:6686
-=======
-	case 1103:
-		yyDollar = yyS[yypt-2 : yypt+1]
-		var yyLOCAL *tree.T
-//line mysql_sql.y:6656
->>>>>>> Stashed changes
 		{
 			name := yyDollar[1].str
 			if yyDollar[2].str != "" {
@@ -15927,11 +15906,7 @@ yydefault:
 	case 1108:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:6703
-=======
-//line mysql_sql.y:6673
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -15949,11 +15924,7 @@ yydefault:
 	case 1110:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:6720
-=======
-//line mysql_sql.y:6690
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -15970,11 +15941,7 @@ yydefault:
 	case 1111:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:6733
-=======
-//line mysql_sql.y:6703
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -15991,11 +15958,7 @@ yydefault:
 	case 1112:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:6746
-=======
-//line mysql_sql.y:6716
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -16011,11 +15974,7 @@ yydefault:
 	case 1113:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:6758
-=======
-//line mysql_sql.y:6728
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -16033,11 +15992,7 @@ yydefault:
 	case 1114:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:6772
-=======
-//line mysql_sql.y:6742
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -16056,11 +16011,7 @@ yydefault:
 	case 1115:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:6787
-=======
-//line mysql_sql.y:6757
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -16079,11 +16030,7 @@ yydefault:
 	case 1116:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:6802
-=======
-//line mysql_sql.y:6772
->>>>>>> Stashed changes
 		{
 			name := yyDollar[1].str
 			if yyDollar[2].str != "" {
@@ -16104,11 +16051,7 @@ yydefault:
 	case 1117:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:6819
-=======
-//line mysql_sql.y:6789
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -16125,21 +16068,13 @@ yydefault:
 		yyVAL.union = yyLOCAL
 	case 1118:
 		yyDollar = yyS[yypt-0 : yypt+1]
-<<<<<<< Updated upstream
 //line mysql_sql.y:6834
-=======
-//line mysql_sql.y:6804
->>>>>>> Stashed changes
 		{
 		}
 	case 1121:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL tree.WindowFrameBound
-<<<<<<< Updated upstream
 //line mysql_sql.y:6840
-=======
-//line mysql_sql.y:6810
->>>>>>> Stashed changes
 		{
 			yyLOCAL = &tree.WindowFrameBoundCurrentRow{}
 		}
@@ -16147,11 +16082,7 @@ yydefault:
 	case 1122:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL tree.WindowFrameBound
-<<<<<<< Updated upstream
 //line mysql_sql.y:6844
-=======
-//line mysql_sql.y:6814
->>>>>>> Stashed changes
 		{
 			yyLOCAL = &tree.WindowFrameBoundPreceding{}
 		}
@@ -16159,11 +16090,7 @@ yydefault:
 	case 1123:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL tree.WindowFrameBound
-<<<<<<< Updated upstream
 //line mysql_sql.y:6848
-=======
-//line mysql_sql.y:6818
->>>>>>> Stashed changes
 		{
 			yyLOCAL = &tree.WindowFrameBoundPreceding{
 				Expr: yyDollar[1].exprUnion(),
@@ -16173,11 +16100,7 @@ yydefault:
 	case 1124:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL tree.WindowFrameBound
-<<<<<<< Updated upstream
 //line mysql_sql.y:6854
-=======
-//line mysql_sql.y:6824
->>>>>>> Stashed changes
 		{
 			yyLOCAL = &tree.WindowFrameBoundFollowing{}
 		}
@@ -16185,11 +16108,7 @@ yydefault:
 	case 1125:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL tree.WindowFrameBound
-<<<<<<< Updated upstream
 //line mysql_sql.y:6858
-=======
-//line mysql_sql.y:6828
->>>>>>> Stashed changes
 		{
 			yyLOCAL = &tree.WindowFrameBoundFollowing{
 				Expr: yyDollar[1].exprUnion(),
@@ -16199,11 +16118,7 @@ yydefault:
 	case 1126:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.WindowFrameUnits
-<<<<<<< Updated upstream
 //line mysql_sql.y:6866
-=======
-//line mysql_sql.y:6836
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.WIN_FRAME_UNIT_ROWS
 		}
@@ -16211,11 +16126,7 @@ yydefault:
 	case 1127:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.WindowFrameUnits
-<<<<<<< Updated upstream
 //line mysql_sql.y:6870
-=======
-//line mysql_sql.y:6840
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.WIN_FRAME_UNIT_RANGE
 		}
@@ -16223,11 +16134,7 @@ yydefault:
 	case 1128:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.WindowFrameUnits
-<<<<<<< Updated upstream
 //line mysql_sql.y:6874
-=======
-//line mysql_sql.y:6844
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.WIN_FRAME_UNIT_GROUPS
 		}
@@ -16235,11 +16142,7 @@ yydefault:
 	case 1129:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.WindowFrame
-<<<<<<< Updated upstream
 //line mysql_sql.y:6880
-=======
-//line mysql_sql.y:6850
->>>>>>> Stashed changes
 		{
 			yyLOCAL = &tree.WindowFrame{
 				Unit:       yyDollar[1].windowFrameUnitUnion(),
@@ -16250,11 +16153,7 @@ yydefault:
 	case 1130:
 		yyDollar = yyS[yypt-5 : yypt+1]
 		var yyLOCAL *tree.WindowFrame
-<<<<<<< Updated upstream
 //line mysql_sql.y:6887
-=======
-//line mysql_sql.y:6857
->>>>>>> Stashed changes
 		{
 			yyLOCAL = &tree.WindowFrame{
 				Unit:       yyDollar[1].windowFrameUnitUnion(),
@@ -16266,11 +16165,7 @@ yydefault:
 	case 1131:
 		yyDollar = yyS[yypt-0 : yypt+1]
 		var yyLOCAL *tree.WindowFrame
-<<<<<<< Updated upstream
 //line mysql_sql.y:6896
-=======
-//line mysql_sql.y:6866
->>>>>>> Stashed changes
 		{
 			yyLOCAL = nil
 		}
@@ -16278,11 +16173,7 @@ yydefault:
 	case 1132:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.WindowFrame
-<<<<<<< Updated upstream
 //line mysql_sql.y:6900
-=======
-//line mysql_sql.y:6870
->>>>>>> Stashed changes
 		{
 			yyLOCAL = yyDollar[1].windowFrameUnion()
 		}
@@ -16290,11 +16181,7 @@ yydefault:
 	case 1133:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL tree.Exprs
-<<<<<<< Updated upstream
 //line mysql_sql.y:6907
-=======
-//line mysql_sql.y:6877
->>>>>>> Stashed changes
 		{
 			yyLOCAL = yyDollar[3].exprsUnion()
 		}
@@ -16302,11 +16189,7 @@ yydefault:
 	case 1134:
 		yyDollar = yyS[yypt-0 : yypt+1]
 		var yyLOCAL tree.Exprs
-<<<<<<< Updated upstream
 //line mysql_sql.y:6912
-=======
-//line mysql_sql.y:6882
->>>>>>> Stashed changes
 		{
 			yyLOCAL = nil
 		}
@@ -16314,43 +16197,27 @@ yydefault:
 	case 1135:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.Exprs
-<<<<<<< Updated upstream
 //line mysql_sql.y:6916
-=======
-//line mysql_sql.y:6886
->>>>>>> Stashed changes
 		{
 			yyLOCAL = yyDollar[1].exprsUnion()
 		}
 		yyVAL.union = yyLOCAL
 	case 1136:
 		yyDollar = yyS[yypt-0 : yypt+1]
-<<<<<<< Updated upstream
 //line mysql_sql.y:6921
-=======
-//line mysql_sql.y:6891
->>>>>>> Stashed changes
 		{
 			yyVAL.str = ","
 		}
 	case 1137:
 		yyDollar = yyS[yypt-2 : yypt+1]
-<<<<<<< Updated upstream
 //line mysql_sql.y:6925
-=======
-//line mysql_sql.y:6895
->>>>>>> Stashed changes
 		{
 			yyVAL.str = yyDollar[2].str
 		}
 	case 1138:
 		yyDollar = yyS[yypt-0 : yypt+1]
 		var yyLOCAL *tree.WindowSpec
-<<<<<<< Updated upstream
 //line mysql_sql.y:6930
-=======
-//line mysql_sql.y:6900
->>>>>>> Stashed changes
 		{
 			yyLOCAL = nil
 		}
@@ -16358,11 +16225,7 @@ yydefault:
 	case 1140:
 		yyDollar = yyS[yypt-6 : yypt+1]
 		var yyLOCAL *tree.WindowSpec
-<<<<<<< Updated upstream
 //line mysql_sql.y:6937
-=======
-//line mysql_sql.y:6907
->>>>>>> Stashed changes
 		{
 			yyLOCAL = &tree.WindowSpec{
 				PartitionBy: yyDollar[3].exprsUnion(),
@@ -16374,11 +16237,7 @@ yydefault:
 	case 1141:
 		yyDollar = yyS[yypt-8 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:6947
-=======
-//line mysql_sql.y:6917
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -16393,11 +16252,7 @@ yydefault:
 	case 1142:
 		yyDollar = yyS[yypt-6 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:6958
-=======
-//line mysql_sql.y:6928
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -16411,11 +16266,7 @@ yydefault:
 	case 1143:
 		yyDollar = yyS[yypt-5 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:6968
-=======
-//line mysql_sql.y:6938
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -16428,11 +16279,7 @@ yydefault:
 	case 1144:
 		yyDollar = yyS[yypt-5 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:6977
-=======
-//line mysql_sql.y:6947
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -16445,11 +16292,7 @@ yydefault:
 	case 1145:
 		yyDollar = yyS[yypt-6 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:6986
-=======
-//line mysql_sql.y:6956
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -16463,11 +16306,7 @@ yydefault:
 	case 1146:
 		yyDollar = yyS[yypt-6 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:6996
-=======
-//line mysql_sql.y:6966
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -16481,11 +16320,7 @@ yydefault:
 	case 1147:
 		yyDollar = yyS[yypt-6 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7006
-=======
-//line mysql_sql.y:6976
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -16499,11 +16334,7 @@ yydefault:
 	case 1148:
 		yyDollar = yyS[yypt-6 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7016
-=======
-//line mysql_sql.y:6986
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -16517,11 +16348,7 @@ yydefault:
 	case 1149:
 		yyDollar = yyS[yypt-5 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7026
-=======
-//line mysql_sql.y:6996
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			es := tree.NewNumValWithType(constant.MakeString("*"), "*", false, tree.P_char)
@@ -16535,11 +16362,7 @@ yydefault:
 	case 1150:
 		yyDollar = yyS[yypt-6 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7036
-=======
-//line mysql_sql.y:7006
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -16553,11 +16376,7 @@ yydefault:
 	case 1151:
 		yyDollar = yyS[yypt-6 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7046
-=======
-//line mysql_sql.y:7016
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -16571,11 +16390,7 @@ yydefault:
 	case 1152:
 		yyDollar = yyS[yypt-6 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7056
-=======
-//line mysql_sql.y:7026
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -16589,11 +16404,7 @@ yydefault:
 	case 1153:
 		yyDollar = yyS[yypt-6 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7066
-=======
-//line mysql_sql.y:7036
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -16607,11 +16418,7 @@ yydefault:
 	case 1154:
 		yyDollar = yyS[yypt-6 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7076
-=======
-//line mysql_sql.y:7046
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -16625,11 +16432,7 @@ yydefault:
 	case 1155:
 		yyDollar = yyS[yypt-6 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7086
-=======
-//line mysql_sql.y:7056
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -16643,11 +16446,7 @@ yydefault:
 	case 1156:
 		yyDollar = yyS[yypt-6 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7096
-=======
-//line mysql_sql.y:7066
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -16661,11 +16460,7 @@ yydefault:
 	case 1157:
 		yyDollar = yyS[yypt-6 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7106
-=======
-//line mysql_sql.y:7076
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -16679,11 +16474,7 @@ yydefault:
 	case 1161:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7123
-=======
-//line mysql_sql.y:7093
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -16695,11 +16486,7 @@ yydefault:
 	case 1162:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7131
-=======
-//line mysql_sql.y:7101
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -16711,11 +16498,7 @@ yydefault:
 	case 1163:
 		yyDollar = yyS[yypt-6 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7139
-=======
-//line mysql_sql.y:7109
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -16727,11 +16510,7 @@ yydefault:
 	case 1164:
 		yyDollar = yyS[yypt-8 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7147
-=======
-//line mysql_sql.y:7117
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -16743,11 +16522,7 @@ yydefault:
 	case 1165:
 		yyDollar = yyS[yypt-6 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7155
-=======
-//line mysql_sql.y:7125
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			str := strings.ToLower(yyDollar[3].str)
@@ -16761,11 +16536,7 @@ yydefault:
 	case 1166:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7165
-=======
-//line mysql_sql.y:7135
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -16777,11 +16548,7 @@ yydefault:
 	case 1167:
 		yyDollar = yyS[yypt-5 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7173
-=======
-//line mysql_sql.y:7143
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -16794,11 +16561,7 @@ yydefault:
 	case 1168:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7182
-=======
-//line mysql_sql.y:7152
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName("nextval")
 			yyLOCAL = &tree.FuncExpr{
@@ -16810,11 +16573,7 @@ yydefault:
 	case 1169:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7190
-=======
-//line mysql_sql.y:7160
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName("setval")
 			yyLOCAL = &tree.FuncExpr{
@@ -16826,11 +16585,7 @@ yydefault:
 	case 1170:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7198
-=======
-//line mysql_sql.y:7168
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName("currval")
 			yyLOCAL = &tree.FuncExpr{
@@ -16842,11 +16597,7 @@ yydefault:
 	case 1171:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7206
-=======
-//line mysql_sql.y:7176
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName("lastval")
 			yyLOCAL = &tree.FuncExpr{
@@ -16858,11 +16609,7 @@ yydefault:
 	case 1172:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7214
-=======
-//line mysql_sql.y:7184
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			arg0 := tree.NewNumValWithType(constant.MakeInt64(0), "0", false, tree.P_int64)
@@ -16877,11 +16624,7 @@ yydefault:
 	case 1173:
 		yyDollar = yyS[yypt-6 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7225
-=======
-//line mysql_sql.y:7195
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			arg0 := tree.NewNumValWithType(constant.MakeInt64(1), "1", false, tree.P_int64)
@@ -16895,11 +16638,7 @@ yydefault:
 	case 1174:
 		yyDollar = yyS[yypt-6 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7235
-=======
-//line mysql_sql.y:7205
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			arg0 := tree.NewNumValWithType(constant.MakeInt64(2), "2", false, tree.P_int64)
@@ -16915,11 +16654,7 @@ yydefault:
 	case 1175:
 		yyDollar = yyS[yypt-7 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7247
-=======
-//line mysql_sql.y:7217
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			arg0 := tree.NewNumValWithType(constant.MakeInt64(3), "3", false, tree.P_int64)
@@ -16934,11 +16669,7 @@ yydefault:
 	case 1176:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7258
-=======
-//line mysql_sql.y:7228
->>>>>>> Stashed changes
 		{
 			column := tree.SetUnresolvedName(strings.ToLower(yyDollar[3].str))
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
@@ -16950,22 +16681,14 @@ yydefault:
 		yyVAL.union = yyLOCAL
 	case 1183:
 		yyDollar = yyS[yypt-1 : yypt+1]
-<<<<<<< Updated upstream
 //line mysql_sql.y:7280
-=======
-//line mysql_sql.y:7250
->>>>>>> Stashed changes
 		{
 			yyVAL.str = yyDollar[1].str
 		}
 	case 1212:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7316
-=======
-//line mysql_sql.y:7286
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			var es tree.Exprs = nil
@@ -16981,11 +16704,7 @@ yydefault:
 	case 1213:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7328
-=======
-//line mysql_sql.y:7298
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			var es tree.Exprs = nil
@@ -17001,11 +16720,7 @@ yydefault:
 	case 1214:
 		yyDollar = yyS[yypt-8 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7340
-=======
-//line mysql_sql.y:7310
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			str := strings.ToLower(yyDollar[3].str)
@@ -17019,11 +16734,7 @@ yydefault:
 	case 1215:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7351
-=======
-//line mysql_sql.y:7321
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -17035,11 +16746,7 @@ yydefault:
 	case 1216:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7359
-=======
-//line mysql_sql.y:7329
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -17050,11 +16757,7 @@ yydefault:
 	case 1217:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7366
-=======
-//line mysql_sql.y:7336
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			yyLOCAL = &tree.FuncExpr{
@@ -17065,11 +16768,7 @@ yydefault:
 	case 1218:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7373
-=======
-//line mysql_sql.y:7343
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower(yyDollar[1].str))
 			var es tree.Exprs = nil
@@ -17085,11 +16784,7 @@ yydefault:
 	case 1219:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7385
-=======
-//line mysql_sql.y:7355
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName("binary")
 			yyLOCAL = &tree.FuncExpr{
@@ -17129,11 +16824,7 @@ yydefault:
 	case 1222:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7413
-=======
-//line mysql_sql.y:7363
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName("char")
 			yyLOCAL = &tree.FuncExpr{
@@ -17145,11 +16836,7 @@ yydefault:
 	case 1223:
 		yyDollar = yyS[yypt-6 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7421
-=======
-//line mysql_sql.y:7371
->>>>>>> Stashed changes
 		{
 			cn := tree.NewNumValWithType(constant.MakeString(yyDollar[5].str), yyDollar[5].str, false, tree.P_char)
 			es := yyDollar[3].exprsUnion()
@@ -17164,11 +16851,7 @@ yydefault:
 	case 1224:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7432
-=======
-//line mysql_sql.y:7382
->>>>>>> Stashed changes
 		{
 			val := tree.NewNumValWithType(constant.MakeString(yyDollar[2].str), yyDollar[2].str, false, tree.P_char)
 			name := tree.SetUnresolvedName("date")
@@ -17181,11 +16864,7 @@ yydefault:
 	case 1225:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7441
-=======
-//line mysql_sql.y:7391
->>>>>>> Stashed changes
 		{
 			val := tree.NewNumValWithType(constant.MakeString(yyDollar[2].str), yyDollar[2].str, false, tree.P_char)
 			name := tree.SetUnresolvedName("time")
@@ -17198,11 +16877,7 @@ yydefault:
 	case 1226:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7450
-=======
-//line mysql_sql.y:7400
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName("insert")
 			yyLOCAL = &tree.FuncExpr{
@@ -17214,11 +16889,7 @@ yydefault:
 	case 1227:
 		yyDollar = yyS[yypt-6 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7458
-=======
-//line mysql_sql.y:7408
->>>>>>> Stashed changes
 		{
 			es := tree.Exprs{yyDollar[3].exprUnion()}
 			es = append(es, yyDollar[5].exprUnion())
@@ -17232,11 +16903,7 @@ yydefault:
 	case 1228:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7468
-=======
-//line mysql_sql.y:7418
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName("password")
 			yyLOCAL = &tree.FuncExpr{
@@ -17248,11 +16915,7 @@ yydefault:
 	case 1229:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.FuncExpr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7476
-=======
-//line mysql_sql.y:7426
->>>>>>> Stashed changes
 		{
 			val := tree.NewNumValWithType(constant.MakeString(yyDollar[2].str), yyDollar[2].str, false, tree.P_char)
 			name := tree.SetUnresolvedName("timestamp")
@@ -17265,11 +16928,7 @@ yydefault:
 	case 1230:
 		yyDollar = yyS[yypt-0 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7486
-=======
-//line mysql_sql.y:7436
->>>>>>> Stashed changes
 		{
 			yyLOCAL = nil
 		}
@@ -17277,11 +16936,7 @@ yydefault:
 	case 1231:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7490
-=======
-//line mysql_sql.y:7440
->>>>>>> Stashed changes
 		{
 			yyLOCAL = yyDollar[1].exprUnion()
 		}
@@ -17289,11 +16944,7 @@ yydefault:
 	case 1232:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7496
-=======
-//line mysql_sql.y:7446
->>>>>>> Stashed changes
 		{
 			yyLOCAL = nil
 		}
@@ -17301,11 +16952,7 @@ yydefault:
 	case 1233:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7500
-=======
-//line mysql_sql.y:7450
->>>>>>> Stashed changes
 		{
 			ival, errStr := util.GetInt64(yyDollar[2].item)
 			if errStr != "" {
@@ -17318,30 +16965,18 @@ yydefault:
 		yyVAL.union = yyLOCAL
 	case 1240:
 		yyDollar = yyS[yypt-0 : yypt+1]
-<<<<<<< Updated upstream
 //line mysql_sql.y:7519
-=======
-//line mysql_sql.y:7469
->>>>>>> Stashed changes
 		{
 		}
 	case 1241:
 		yyDollar = yyS[yypt-2 : yypt+1]
-<<<<<<< Updated upstream
 //line mysql_sql.y:7521
-=======
-//line mysql_sql.y:7471
->>>>>>> Stashed changes
 		{
 		}
 	case 1275:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7562
-=======
-//line mysql_sql.y:7512
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName("interval")
 			str := strings.ToLower(yyDollar[3].str)
@@ -17355,11 +16990,7 @@ yydefault:
 	case 1276:
 		yyDollar = yyS[yypt-0 : yypt+1]
 		var yyLOCAL tree.FuncType
-<<<<<<< Updated upstream
 //line mysql_sql.y:7573
-=======
-//line mysql_sql.y:7523
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.FUNC_TYPE_DEFAULT
 		}
@@ -17367,11 +16998,7 @@ yydefault:
 	case 1277:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.FuncType
-<<<<<<< Updated upstream
 //line mysql_sql.y:7577
-=======
-//line mysql_sql.y:7527
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.FUNC_TYPE_DISTINCT
 		}
@@ -17379,11 +17006,7 @@ yydefault:
 	case 1278:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.FuncType
-<<<<<<< Updated upstream
 //line mysql_sql.y:7581
-=======
-//line mysql_sql.y:7531
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.FUNC_TYPE_ALL
 		}
@@ -17391,11 +17014,7 @@ yydefault:
 	case 1279:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL *tree.Tuple
-<<<<<<< Updated upstream
 //line mysql_sql.y:7587
-=======
-//line mysql_sql.y:7537
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewTuple(yyDollar[2].exprsUnion())
 		}
@@ -17403,11 +17022,7 @@ yydefault:
 	case 1280:
 		yyDollar = yyS[yypt-0 : yypt+1]
 		var yyLOCAL tree.Exprs
-<<<<<<< Updated upstream
 //line mysql_sql.y:7592
-=======
-//line mysql_sql.y:7542
->>>>>>> Stashed changes
 		{
 			yyLOCAL = nil
 		}
@@ -17415,11 +17030,7 @@ yydefault:
 	case 1281:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.Exprs
-<<<<<<< Updated upstream
 //line mysql_sql.y:7596
-=======
-//line mysql_sql.y:7546
->>>>>>> Stashed changes
 		{
 			yyLOCAL = yyDollar[1].exprsUnion()
 		}
@@ -17427,11 +17038,7 @@ yydefault:
 	case 1282:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.Exprs
-<<<<<<< Updated upstream
 //line mysql_sql.y:7602
-=======
-//line mysql_sql.y:7552
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.Exprs{yyDollar[1].exprUnion()}
 		}
@@ -17439,11 +17046,7 @@ yydefault:
 	case 1283:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL tree.Exprs
-<<<<<<< Updated upstream
 //line mysql_sql.y:7606
-=======
-//line mysql_sql.y:7556
->>>>>>> Stashed changes
 		{
 			yyLOCAL = append(yyDollar[1].exprsUnion(), yyDollar[3].exprUnion())
 		}
@@ -17451,11 +17054,7 @@ yydefault:
 	case 1284:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7613
-=======
-//line mysql_sql.y:7563
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewAndExpr(yyDollar[1].exprUnion(), yyDollar[3].exprUnion())
 		}
@@ -17463,11 +17062,7 @@ yydefault:
 	case 1285:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7617
-=======
-//line mysql_sql.y:7567
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewOrExpr(yyDollar[1].exprUnion(), yyDollar[3].exprUnion())
 		}
@@ -17475,11 +17070,7 @@ yydefault:
 	case 1286:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7621
-=======
-//line mysql_sql.y:7571
->>>>>>> Stashed changes
 		{
 			name := tree.SetUnresolvedName(strings.ToLower("concat"))
 			yyLOCAL = &tree.FuncExpr{
@@ -17491,11 +17082,7 @@ yydefault:
 	case 1287:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7629
-=======
-//line mysql_sql.y:7579
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewXorExpr(yyDollar[1].exprUnion(), yyDollar[3].exprUnion())
 		}
@@ -17503,11 +17090,7 @@ yydefault:
 	case 1288:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7633
-=======
-//line mysql_sql.y:7583
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewNotExpr(yyDollar[2].exprUnion())
 		}
@@ -17515,11 +17098,7 @@ yydefault:
 	case 1289:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7637
-=======
-//line mysql_sql.y:7587
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewMaxValue()
 		}
@@ -17527,11 +17106,7 @@ yydefault:
 	case 1290:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7641
-=======
-//line mysql_sql.y:7591
->>>>>>> Stashed changes
 		{
 			yyLOCAL = yyDollar[1].exprUnion()
 		}
@@ -17539,11 +17114,7 @@ yydefault:
 	case 1291:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7647
-=======
-//line mysql_sql.y:7597
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewIsNullExpr(yyDollar[1].exprUnion())
 		}
@@ -17551,11 +17122,7 @@ yydefault:
 	case 1292:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7651
-=======
-//line mysql_sql.y:7601
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewIsNotNullExpr(yyDollar[1].exprUnion())
 		}
@@ -17563,11 +17130,7 @@ yydefault:
 	case 1293:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7655
-=======
-//line mysql_sql.y:7605
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewIsUnknownExpr(yyDollar[1].exprUnion())
 		}
@@ -17575,11 +17138,7 @@ yydefault:
 	case 1294:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7659
-=======
-//line mysql_sql.y:7609
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewIsNotUnknownExpr(yyDollar[1].exprUnion())
 		}
@@ -17587,11 +17146,7 @@ yydefault:
 	case 1295:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7663
-=======
-//line mysql_sql.y:7613
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewIsTrueExpr(yyDollar[1].exprUnion())
 		}
@@ -17599,11 +17154,7 @@ yydefault:
 	case 1296:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7667
-=======
-//line mysql_sql.y:7617
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewIsNotTrueExpr(yyDollar[1].exprUnion())
 		}
@@ -17611,11 +17162,7 @@ yydefault:
 	case 1297:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7671
-=======
-//line mysql_sql.y:7621
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewIsFalseExpr(yyDollar[1].exprUnion())
 		}
@@ -17623,11 +17170,7 @@ yydefault:
 	case 1298:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7675
-=======
-//line mysql_sql.y:7625
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewIsNotFalseExpr(yyDollar[1].exprUnion())
 		}
@@ -17635,11 +17178,7 @@ yydefault:
 	case 1299:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7679
-=======
-//line mysql_sql.y:7629
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewComparisonExpr(yyDollar[2].comparisonOpUnion(), yyDollar[1].exprUnion(), yyDollar[3].exprUnion())
 		}
@@ -17647,11 +17186,7 @@ yydefault:
 	case 1300:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7683
-=======
-//line mysql_sql.y:7633
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewSubqueryComparisonExpr(yyDollar[2].comparisonOpUnion(), yyDollar[3].comparisonOpUnion(), yyDollar[1].exprUnion(), yyDollar[4].subqueryUnion())
 			yyLOCAL = tree.NewSubqueryComparisonExpr(yyDollar[2].comparisonOpUnion(), yyDollar[3].comparisonOpUnion(), yyDollar[1].exprUnion(), yyDollar[4].subqueryUnion())
@@ -17660,11 +17195,7 @@ yydefault:
 	case 1302:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7691
-=======
-//line mysql_sql.y:7641
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewComparisonExpr(tree.IN, yyDollar[1].exprUnion(), yyDollar[3].exprUnion())
 		}
@@ -17672,11 +17203,7 @@ yydefault:
 	case 1303:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7695
-=======
-//line mysql_sql.y:7645
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewComparisonExpr(tree.NOT_IN, yyDollar[1].exprUnion(), yyDollar[4].exprUnion())
 		}
@@ -17684,11 +17211,7 @@ yydefault:
 	case 1304:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7699
-=======
-//line mysql_sql.y:7649
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewComparisonExprWithEscape(tree.LIKE, yyDollar[1].exprUnion(), yyDollar[3].exprUnion(), yyDollar[4].exprUnion())
 		}
@@ -17696,11 +17219,7 @@ yydefault:
 	case 1305:
 		yyDollar = yyS[yypt-5 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7703
-=======
-//line mysql_sql.y:7653
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewComparisonExprWithEscape(tree.NOT_LIKE, yyDollar[1].exprUnion(), yyDollar[4].exprUnion(), yyDollar[5].exprUnion())
 		}
@@ -17708,11 +17227,7 @@ yydefault:
 	case 1306:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7707
-=======
-//line mysql_sql.y:7657
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewComparisonExprWithEscape(tree.ILIKE, yyDollar[1].exprUnion(), yyDollar[3].exprUnion(), yyDollar[4].exprUnion())
 		}
@@ -17720,11 +17235,7 @@ yydefault:
 	case 1307:
 		yyDollar = yyS[yypt-5 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7711
-=======
-//line mysql_sql.y:7661
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewComparisonExprWithEscape(tree.NOT_ILIKE, yyDollar[1].exprUnion(), yyDollar[4].exprUnion(), yyDollar[5].exprUnion())
 		}
@@ -17732,11 +17243,7 @@ yydefault:
 	case 1308:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7715
-=======
-//line mysql_sql.y:7665
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewComparisonExpr(tree.REG_MATCH, yyDollar[1].exprUnion(), yyDollar[3].exprUnion())
 		}
@@ -17744,11 +17251,7 @@ yydefault:
 	case 1309:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7719
-=======
-//line mysql_sql.y:7669
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewComparisonExpr(tree.NOT_REG_MATCH, yyDollar[1].exprUnion(), yyDollar[4].exprUnion())
 		}
@@ -17756,11 +17259,7 @@ yydefault:
 	case 1310:
 		yyDollar = yyS[yypt-5 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7723
-=======
-//line mysql_sql.y:7673
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewRangeCond(false, yyDollar[1].exprUnion(), yyDollar[3].exprUnion(), yyDollar[5].exprUnion())
 		}
@@ -17768,11 +17267,7 @@ yydefault:
 	case 1311:
 		yyDollar = yyS[yypt-6 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7727
-=======
-//line mysql_sql.y:7677
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewRangeCond(true, yyDollar[1].exprUnion(), yyDollar[4].exprUnion(), yyDollar[6].exprUnion())
 		}
@@ -17780,11 +17275,7 @@ yydefault:
 	case 1313:
 		yyDollar = yyS[yypt-0 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7733
-=======
-//line mysql_sql.y:7683
->>>>>>> Stashed changes
 		{
 			yyLOCAL = nil
 		}
@@ -17792,11 +17283,7 @@ yydefault:
 	case 1314:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7737
-=======
-//line mysql_sql.y:7687
->>>>>>> Stashed changes
 		{
 			yyLOCAL = yyDollar[2].exprUnion()
 		}
@@ -17804,11 +17291,7 @@ yydefault:
 	case 1315:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7743
-=======
-//line mysql_sql.y:7693
->>>>>>> Stashed changes
 		{
 			yyLOCAL = yyDollar[1].tupleUnion()
 		}
@@ -17816,11 +17299,7 @@ yydefault:
 	case 1316:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7747
-=======
-//line mysql_sql.y:7697
->>>>>>> Stashed changes
 		{
 			yyLOCAL = yyDollar[1].subqueryUnion()
 		}
@@ -17828,11 +17307,7 @@ yydefault:
 	case 1317:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.ComparisonOp
-<<<<<<< Updated upstream
 //line mysql_sql.y:7754
-=======
-//line mysql_sql.y:7704
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.ALL
 		}
@@ -17840,11 +17315,7 @@ yydefault:
 	case 1318:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.ComparisonOp
-<<<<<<< Updated upstream
 //line mysql_sql.y:7758
-=======
-//line mysql_sql.y:7708
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.ANY
 		}
@@ -17852,11 +17323,7 @@ yydefault:
 	case 1319:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.ComparisonOp
-<<<<<<< Updated upstream
 //line mysql_sql.y:7762
-=======
-//line mysql_sql.y:7712
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.SOME
 		}
@@ -17864,11 +17331,7 @@ yydefault:
 	case 1320:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.ComparisonOp
-<<<<<<< Updated upstream
 //line mysql_sql.y:7768
-=======
-//line mysql_sql.y:7718
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.EQUAL
 		}
@@ -17876,11 +17339,7 @@ yydefault:
 	case 1321:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.ComparisonOp
-<<<<<<< Updated upstream
 //line mysql_sql.y:7772
-=======
-//line mysql_sql.y:7722
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.LESS_THAN
 		}
@@ -17888,11 +17347,7 @@ yydefault:
 	case 1322:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.ComparisonOp
-<<<<<<< Updated upstream
 //line mysql_sql.y:7776
-=======
-//line mysql_sql.y:7726
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.GREAT_THAN
 		}
@@ -17900,11 +17355,7 @@ yydefault:
 	case 1323:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.ComparisonOp
-<<<<<<< Updated upstream
 //line mysql_sql.y:7780
-=======
-//line mysql_sql.y:7730
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.LESS_THAN_EQUAL
 		}
@@ -17912,11 +17363,7 @@ yydefault:
 	case 1324:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.ComparisonOp
-<<<<<<< Updated upstream
 //line mysql_sql.y:7784
-=======
-//line mysql_sql.y:7734
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.GREAT_THAN_EQUAL
 		}
@@ -17924,11 +17371,7 @@ yydefault:
 	case 1325:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.ComparisonOp
-<<<<<<< Updated upstream
 //line mysql_sql.y:7788
-=======
-//line mysql_sql.y:7738
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NOT_EQUAL
 		}
@@ -17936,11 +17379,7 @@ yydefault:
 	case 1326:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.ComparisonOp
-<<<<<<< Updated upstream
 //line mysql_sql.y:7792
-=======
-//line mysql_sql.y:7742
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NULL_SAFE_EQUAL
 		}
@@ -17948,11 +17387,7 @@ yydefault:
 	case 1327:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL tree.ColumnAttribute
-<<<<<<< Updated upstream
 //line mysql_sql.y:7798
-=======
-//line mysql_sql.y:7748
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewAttributePrimaryKey()
 		}
@@ -17960,11 +17395,7 @@ yydefault:
 	case 1328:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL tree.ColumnAttribute
-<<<<<<< Updated upstream
 //line mysql_sql.y:7802
-=======
-//line mysql_sql.y:7752
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewAttributeUniqueKey()
 		}
@@ -17972,11 +17403,7 @@ yydefault:
 	case 1329:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.ColumnAttribute
-<<<<<<< Updated upstream
 //line mysql_sql.y:7806
-=======
-//line mysql_sql.y:7756
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewAttributeUnique()
 		}
@@ -17984,11 +17411,7 @@ yydefault:
 	case 1330:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.ColumnAttribute
-<<<<<<< Updated upstream
 //line mysql_sql.y:7810
-=======
-//line mysql_sql.y:7760
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewAttributeKey()
 		}
@@ -17996,11 +17419,7 @@ yydefault:
 	case 1331:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7816
-=======
-//line mysql_sql.y:7766
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewNumValWithType(constant.MakeString(yyDollar[1].str), yyDollar[1].str, false, tree.P_char)
 		}
@@ -18008,11 +17427,7 @@ yydefault:
 	case 1332:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7820
-=======
-//line mysql_sql.y:7770
->>>>>>> Stashed changes
 		{
 			str := fmt.Sprintf("%v", yyDollar[1].item)
 			switch v := yyDollar[1].item.(type) {
@@ -18029,11 +17444,7 @@ yydefault:
 	case 1333:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7833
-=======
-//line mysql_sql.y:7783
->>>>>>> Stashed changes
 		{
 			fval := yyDollar[1].item.(float64)
 			yyLOCAL = tree.NewNumValWithType(constant.MakeFloat64(fval), yylex.(*Lexer).scanner.LastToken, false, tree.P_float64)
@@ -18042,11 +17453,7 @@ yydefault:
 	case 1334:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7838
-=======
-//line mysql_sql.y:7788
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewNumValWithType(constant.MakeBool(true), "true", false, tree.P_bool)
 		}
@@ -18054,11 +17461,7 @@ yydefault:
 	case 1335:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7842
-=======
-//line mysql_sql.y:7792
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewNumValWithType(constant.MakeBool(false), "false", false, tree.P_bool)
 		}
@@ -18066,11 +17469,7 @@ yydefault:
 	case 1336:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7846
-=======
-//line mysql_sql.y:7796
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewNumValWithType(constant.MakeUnknown(), "null", false, tree.P_null)
 		}
@@ -18078,11 +17477,7 @@ yydefault:
 	case 1337:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7850
-=======
-//line mysql_sql.y:7800
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewNumValWithType(constant.MakeString(yyDollar[1].str), yyDollar[1].str, false, tree.P_hexnum)
 		}
@@ -18090,11 +17485,7 @@ yydefault:
 	case 1338:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7854
-=======
-//line mysql_sql.y:7804
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewNumValWithType(constant.MakeString(yyDollar[1].str), yyDollar[1].str, false, tree.P_decimal)
 		}
@@ -18102,11 +17493,7 @@ yydefault:
 	case 1339:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7858
-=======
-//line mysql_sql.y:7808
->>>>>>> Stashed changes
 		{
 			switch v := yyDollar[1].item.(type) {
 			case uint64:
@@ -18124,11 +17511,7 @@ yydefault:
 	case 1340:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7872
-=======
-//line mysql_sql.y:7822
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewParamExpr(yylex.(*Lexer).GetParamIndex())
 		}
@@ -18136,11 +17519,7 @@ yydefault:
 	case 1341:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL tree.Expr
-<<<<<<< Updated upstream
 //line mysql_sql.y:7876
-=======
-//line mysql_sql.y:7826
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.NewNumValWithType(constant.MakeString(yyDollar[2].str), yyDollar[2].str, false, tree.P_ScoreBinary)
 		}
@@ -18148,11 +17527,7 @@ yydefault:
 	case 1342:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:7883
-=======
-//line mysql_sql.y:7833
->>>>>>> Stashed changes
 		{
 			yyLOCAL = yyDollar[1].columnTypeUnion()
 			yyLOCAL.InternalType.Unsigned = yyDollar[2].unsignedOptUnion()
@@ -18162,11 +17537,7 @@ yydefault:
 	case 1346:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:7894
-=======
-//line mysql_sql.y:7844
->>>>>>> Stashed changes
 		{
 			yyLOCAL = yyDollar[1].columnTypeUnion()
 			yyLOCAL.InternalType.DisplayWith = yyDollar[2].lengthOptUnion()
@@ -18175,11 +17546,7 @@ yydefault:
 	case 1347:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:7899
-=======
-//line mysql_sql.y:7849
->>>>>>> Stashed changes
 		{
 			yyLOCAL = yyDollar[1].columnTypeUnion()
 		}
@@ -18187,11 +17554,7 @@ yydefault:
 	case 1348:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:7905
-=======
-//line mysql_sql.y:7855
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18207,11 +17570,7 @@ yydefault:
 	case 1349:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:7917
-=======
-//line mysql_sql.y:7867
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18227,11 +17586,7 @@ yydefault:
 	case 1350:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:7929
-=======
-//line mysql_sql.y:7879
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18247,11 +17602,7 @@ yydefault:
 	case 1351:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:7941
-=======
-//line mysql_sql.y:7891
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18268,11 +17619,7 @@ yydefault:
 	case 1352:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:7954
-=======
-//line mysql_sql.y:7904
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18289,11 +17636,7 @@ yydefault:
 	case 1353:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:7967
-=======
-//line mysql_sql.y:7917
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18310,11 +17653,7 @@ yydefault:
 	case 1354:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:7980
-=======
-//line mysql_sql.y:7930
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18331,11 +17670,7 @@ yydefault:
 	case 1355:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:7993
-=======
-//line mysql_sql.y:7943
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18352,11 +17687,7 @@ yydefault:
 	case 1356:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8006
-=======
-//line mysql_sql.y:7956
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18373,11 +17704,7 @@ yydefault:
 	case 1357:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8019
-=======
-//line mysql_sql.y:7969
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18394,11 +17721,7 @@ yydefault:
 	case 1358:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8032
-=======
-//line mysql_sql.y:7982
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18415,11 +17738,7 @@ yydefault:
 	case 1359:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8045
-=======
-//line mysql_sql.y:7995
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18436,11 +17755,7 @@ yydefault:
 	case 1360:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8058
-=======
-//line mysql_sql.y:8008
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18457,11 +17772,7 @@ yydefault:
 	case 1361:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8071
-=======
-//line mysql_sql.y:8021
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18478,11 +17789,7 @@ yydefault:
 	case 1362:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8086
-=======
-//line mysql_sql.y:8036
->>>>>>> Stashed changes
 		{
 			locale := ""
 			if yyDollar[2].lengthScaleOptUnion().DisplayWith > 255 {
@@ -18513,11 +17820,7 @@ yydefault:
 	case 1363:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8113
-=======
-//line mysql_sql.y:8063
->>>>>>> Stashed changes
 		{
 			locale := ""
 			if yyDollar[2].lengthScaleOptUnion().DisplayWith > 255 {
@@ -18562,11 +17865,7 @@ yydefault:
 	case 1364:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8155
-=======
-//line mysql_sql.y:8105
->>>>>>> Stashed changes
 		{
 			locale := ""
 			if yyDollar[2].lengthScaleOptUnion().Scale != tree.NotDefineDec && yyDollar[2].lengthScaleOptUnion().Scale > yyDollar[2].lengthScaleOptUnion().DisplayWith {
@@ -18606,11 +17905,7 @@ yydefault:
 	case 1365:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8203
-=======
-//line mysql_sql.y:8153
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18629,11 +17924,7 @@ yydefault:
 	case 1366:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8220
-=======
-//line mysql_sql.y:8170
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18649,11 +17940,7 @@ yydefault:
 	case 1367:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8232
-=======
-//line mysql_sql.y:8182
->>>>>>> Stashed changes
 		{
 			locale := ""
 			if yyDollar[2].lengthOptUnion() < 0 || yyDollar[2].lengthOptUnion() > 6 {
@@ -18677,11 +17964,7 @@ yydefault:
 	case 1368:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8252
-=======
-//line mysql_sql.y:8202
->>>>>>> Stashed changes
 		{
 			locale := ""
 			if yyDollar[2].lengthOptUnion() < 0 || yyDollar[2].lengthOptUnion() > 6 {
@@ -18705,11 +17988,7 @@ yydefault:
 	case 1369:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8272
-=======
-//line mysql_sql.y:8222
->>>>>>> Stashed changes
 		{
 			locale := ""
 			if yyDollar[2].lengthOptUnion() < 0 || yyDollar[2].lengthOptUnion() > 6 {
@@ -18733,11 +18012,7 @@ yydefault:
 	case 1370:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8292
-=======
-//line mysql_sql.y:8242
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18755,11 +18030,7 @@ yydefault:
 	case 1371:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8308
-=======
-//line mysql_sql.y:8258
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18776,11 +18047,7 @@ yydefault:
 	case 1372:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8321
-=======
-//line mysql_sql.y:8271
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18797,11 +18064,7 @@ yydefault:
 	case 1373:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8334
-=======
-//line mysql_sql.y:8284
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18818,11 +18081,7 @@ yydefault:
 	case 1374:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8347
-=======
-//line mysql_sql.y:8297
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18839,11 +18098,7 @@ yydefault:
 	case 1375:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8360
-=======
-//line mysql_sql.y:8310
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18859,11 +18114,7 @@ yydefault:
 	case 1376:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8372
-=======
-//line mysql_sql.y:8322
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18879,11 +18130,7 @@ yydefault:
 	case 1377:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8384
-=======
-//line mysql_sql.y:8334
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18899,11 +18146,7 @@ yydefault:
 	case 1378:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8396
-=======
-//line mysql_sql.y:8346
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18919,11 +18162,7 @@ yydefault:
 	case 1379:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8408
-=======
-//line mysql_sql.y:8358
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18939,11 +18178,7 @@ yydefault:
 	case 1380:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8420
-=======
-//line mysql_sql.y:8370
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18959,11 +18194,7 @@ yydefault:
 	case 1381:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8432
-=======
-//line mysql_sql.y:8382
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18979,11 +18210,7 @@ yydefault:
 	case 1382:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8444
-=======
-//line mysql_sql.y:8394
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -18999,11 +18226,7 @@ yydefault:
 	case 1383:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8456
-=======
-//line mysql_sql.y:8406
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -19019,11 +18242,7 @@ yydefault:
 	case 1384:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8468
-=======
-//line mysql_sql.y:8418
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -19040,11 +18259,7 @@ yydefault:
 	case 1385:
 		yyDollar = yyS[yypt-4 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8481
-=======
-//line mysql_sql.y:8431
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -19061,11 +18276,7 @@ yydefault:
 	case 1386:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8494
-=======
-//line mysql_sql.y:8444
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -19082,11 +18293,7 @@ yydefault:
 	case 1387:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		var yyLOCAL tree.Statement
-<<<<<<< Updated upstream
 //line mysql_sql.y:8509
-=======
-//line mysql_sql.y:8459
->>>>>>> Stashed changes
 		{
 			yyLOCAL = &tree.Do{
 				Exprs: yyDollar[2].exprsUnion(),
@@ -19096,11 +18303,7 @@ yydefault:
 	case 1388:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL tree.Statement
-<<<<<<< Updated upstream
 //line mysql_sql.y:8517
-=======
-//line mysql_sql.y:8467
->>>>>>> Stashed changes
 		{
 			yyLOCAL = &tree.Declare{
 				Variables:  yyDollar[2].strsUnion(),
@@ -19112,11 +18315,7 @@ yydefault:
 	case 1389:
 		yyDollar = yyS[yypt-5 : yypt+1]
 		var yyLOCAL tree.Statement
-<<<<<<< Updated upstream
 //line mysql_sql.y:8526
-=======
-//line mysql_sql.y:8476
->>>>>>> Stashed changes
 		{
 			yyLOCAL = &tree.Declare{
 				Variables:  yyDollar[2].strsUnion(),
@@ -19128,11 +18327,7 @@ yydefault:
 	case 1390:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL *tree.T
-<<<<<<< Updated upstream
 //line mysql_sql.y:8536
-=======
-//line mysql_sql.y:8486
->>>>>>> Stashed changes
 		{
 			locale := ""
 			yyLOCAL = &tree.T{
@@ -19148,11 +18343,7 @@ yydefault:
 	case 1391:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL []string
-<<<<<<< Updated upstream
 //line mysql_sql.y:8559
-=======
-//line mysql_sql.y:8509
->>>>>>> Stashed changes
 		{
 			yyLOCAL = make([]string, 0, 4)
 			yyLOCAL = append(yyLOCAL, yyDollar[1].str)
@@ -19161,11 +18352,7 @@ yydefault:
 	case 1392:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL []string
-<<<<<<< Updated upstream
 //line mysql_sql.y:8564
-=======
-//line mysql_sql.y:8514
->>>>>>> Stashed changes
 		{
 			yyLOCAL = append(yyDollar[1].strsUnion(), yyDollar[3].str)
 		}
@@ -19173,11 +18360,7 @@ yydefault:
 	case 1393:
 		yyDollar = yyS[yypt-0 : yypt+1]
 		var yyLOCAL int32
-<<<<<<< Updated upstream
 //line mysql_sql.y:8570
-=======
-//line mysql_sql.y:8520
->>>>>>> Stashed changes
 		{
 			yyLOCAL = 0
 		}
@@ -19185,11 +18368,7 @@ yydefault:
 	case 1395:
 		yyDollar = yyS[yypt-0 : yypt+1]
 		var yyLOCAL int32
-<<<<<<< Updated upstream
 //line mysql_sql.y:8577
-=======
-//line mysql_sql.y:8527
->>>>>>> Stashed changes
 		{
 			yyLOCAL = 0
 		}
@@ -19197,11 +18376,7 @@ yydefault:
 	case 1396:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL int32
-<<<<<<< Updated upstream
 //line mysql_sql.y:8581
-=======
-//line mysql_sql.y:8531
->>>>>>> Stashed changes
 		{
 			yyLOCAL = int32(yyDollar[2].item.(int64))
 		}
@@ -19209,11 +18384,7 @@ yydefault:
 	case 1397:
 		yyDollar = yyS[yypt-0 : yypt+1]
 		var yyLOCAL int32
-<<<<<<< Updated upstream
 //line mysql_sql.y:8586
-=======
-//line mysql_sql.y:8536
->>>>>>> Stashed changes
 		{
 			yyLOCAL = int32(-1)
 		}
@@ -19221,11 +18392,7 @@ yydefault:
 	case 1398:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL int32
-<<<<<<< Updated upstream
 //line mysql_sql.y:8590
-=======
-//line mysql_sql.y:8540
->>>>>>> Stashed changes
 		{
 			yyLOCAL = int32(yyDollar[2].item.(int64))
 		}
@@ -19233,11 +18400,7 @@ yydefault:
 	case 1399:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL int32
-<<<<<<< Updated upstream
 //line mysql_sql.y:8596
-=======
-//line mysql_sql.y:8546
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.GetDisplayWith(int32(yyDollar[2].item.(int64)))
 		}
@@ -19245,11 +18408,7 @@ yydefault:
 	case 1400:
 		yyDollar = yyS[yypt-0 : yypt+1]
 		var yyLOCAL tree.LengthScaleOpt
-<<<<<<< Updated upstream
 //line mysql_sql.y:8602
-=======
-//line mysql_sql.y:8552
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.LengthScaleOpt{
 				DisplayWith: tree.NotDefineDisplayWidth,
@@ -19260,11 +18419,7 @@ yydefault:
 	case 1401:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL tree.LengthScaleOpt
-<<<<<<< Updated upstream
 //line mysql_sql.y:8609
-=======
-//line mysql_sql.y:8559
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.LengthScaleOpt{
 				DisplayWith: tree.GetDisplayWith(int32(yyDollar[2].item.(int64))),
@@ -19275,11 +18430,7 @@ yydefault:
 	case 1402:
 		yyDollar = yyS[yypt-5 : yypt+1]
 		var yyLOCAL tree.LengthScaleOpt
-<<<<<<< Updated upstream
 //line mysql_sql.y:8616
-=======
-//line mysql_sql.y:8566
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.LengthScaleOpt{
 				DisplayWith: tree.GetDisplayWith(int32(yyDollar[2].item.(int64))),
@@ -19290,11 +18441,7 @@ yydefault:
 	case 1403:
 		yyDollar = yyS[yypt-0 : yypt+1]
 		var yyLOCAL tree.LengthScaleOpt
-<<<<<<< Updated upstream
 //line mysql_sql.y:8625
-=======
-//line mysql_sql.y:8575
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.LengthScaleOpt{
 				DisplayWith: 38, // this is the default precision for decimal
@@ -19305,11 +18452,7 @@ yydefault:
 	case 1404:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		var yyLOCAL tree.LengthScaleOpt
-<<<<<<< Updated upstream
 //line mysql_sql.y:8632
-=======
-//line mysql_sql.y:8582
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.LengthScaleOpt{
 				DisplayWith: tree.GetDisplayWith(int32(yyDollar[2].item.(int64))),
@@ -19320,11 +18463,7 @@ yydefault:
 	case 1405:
 		yyDollar = yyS[yypt-5 : yypt+1]
 		var yyLOCAL tree.LengthScaleOpt
-<<<<<<< Updated upstream
 //line mysql_sql.y:8639
-=======
-//line mysql_sql.y:8589
->>>>>>> Stashed changes
 		{
 			yyLOCAL = tree.LengthScaleOpt{
 				DisplayWith: tree.GetDisplayWith(int32(yyDollar[2].item.(int64))),
@@ -19335,11 +18474,7 @@ yydefault:
 	case 1406:
 		yyDollar = yyS[yypt-0 : yypt+1]
 		var yyLOCAL bool
-<<<<<<< Updated upstream
 //line mysql_sql.y:8648
-=======
-//line mysql_sql.y:8598
->>>>>>> Stashed changes
 		{
 			yyLOCAL = false
 		}
@@ -19347,11 +18482,7 @@ yydefault:
 	case 1407:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL bool
-<<<<<<< Updated upstream
 //line mysql_sql.y:8652
-=======
-//line mysql_sql.y:8602
->>>>>>> Stashed changes
 		{
 			yyLOCAL = true
 		}
@@ -19359,53 +18490,33 @@ yydefault:
 	case 1408:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL bool
-<<<<<<< Updated upstream
 //line mysql_sql.y:8656
-=======
-//line mysql_sql.y:8606
->>>>>>> Stashed changes
 		{
 			yyLOCAL = false
 		}
 		yyVAL.union = yyLOCAL
 	case 1409:
 		yyDollar = yyS[yypt-0 : yypt+1]
-<<<<<<< Updated upstream
 //line mysql_sql.y:8662
-=======
-//line mysql_sql.y:8612
->>>>>>> Stashed changes
 		{
 		}
 	case 1410:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		var yyLOCAL bool
-<<<<<<< Updated upstream
 //line mysql_sql.y:8664
-=======
-//line mysql_sql.y:8614
->>>>>>> Stashed changes
 		{
 			yyLOCAL = true
 		}
 		yyVAL.union = yyLOCAL
 	case 1414:
 		yyDollar = yyS[yypt-0 : yypt+1]
-<<<<<<< Updated upstream
 //line mysql_sql.y:8674
-=======
-//line mysql_sql.y:8624
->>>>>>> Stashed changes
 		{
 			yyVAL.str = ""
 		}
 	case 1415:
 		yyDollar = yyS[yypt-1 : yypt+1]
-<<<<<<< Updated upstream
 //line mysql_sql.y:8678
-=======
-//line mysql_sql.y:8628
->>>>>>> Stashed changes
 		{
 			yyVAL.str = string(yyDollar[1].str)
 		}

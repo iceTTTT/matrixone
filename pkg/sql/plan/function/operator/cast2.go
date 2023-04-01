@@ -457,12 +457,11 @@ func NewCast(parameters []*vector.Vector, result vector.FunctionResultWrapper, p
 	case types.T_json:
 		s := vector.GenerateFunctionStrParameter(from)
 		err = jsonToOthers(proc.Ctx, s, *toType, result, length)
-	case types.T_enum:
-		if len(fromType.EnumValues) > 255 {
-			s := vector.GenerateFunctionFixedTypeParameter[uint16](from)
-			err = EnumToOthers(proc, s, *toType, result, length)
-		}
-		s := vector.GenerateFunctionFixedTypeParameter[uint8](from)
+	case types.T_enum1:
+		s := vector.GenerateFunctionFixedTypeParameter[types.Enum1](from)
+		err = EnumToOthers(proc, s, *toType, result, length)
+	case types.T_enum2:
+		s := vector.GenerateFunctionFixedTypeParameter[types.Enum2](from)
 		err = EnumToOthers(proc, s, *toType, result, length)
 	default:
 		// XXX we set the function here to adapt to the BVT cases.
@@ -552,12 +551,11 @@ func boolToOthers(ctx context.Context,
 	case types.T_uint64:
 		rs := vector.MustFunctionResult[uint64](result)
 		return boolToInteger(source, rs, length)
-	case types.T_enum:
-		if len(toType.EnumValues) > 255 {
-			rs := vector.MustFunctionResult[uint16](result)
-			return boolToEnum(ctx, source, rs, length)
-		}
-		rs := vector.MustFunctionResult[uint8](result)
+	case types.T_enum1:
+		rs := vector.MustFunctionResult[types.Enum1](result)
+		return boolToEnum(ctx, source, rs, length)
+	case types.T_enum2:
+		rs := vector.MustFunctionResult[types.Enum2](result)
 		return boolToEnum(ctx, source, rs, length)
 	}
 	return moerr.NewInternalError(ctx, fmt.Sprintf("unsupported cast from bool to %s", toType))
@@ -621,12 +619,11 @@ func int8ToOthers(ctx context.Context,
 	case types.T_timestamp:
 		rs := vector.MustFunctionResult[types.Timestamp](result)
 		return integerToTimestamp(source, rs, length)
-	case types.T_enum:
-		if len(toType.EnumValues) > 255 {
-			rs := vector.MustFunctionResult[uint16](result)
-			return integerToEnum(ctx, source, rs, length)
-		}
-		rs := vector.MustFunctionResult[uint8](result)
+	case types.T_enum1:
+		rs := vector.MustFunctionResult[types.Enum1](result)
+		return integerToEnum(ctx, source, rs, length)
+	case types.T_enum2:
+		rs := vector.MustFunctionResult[types.Enum2](result)
 		return integerToEnum(ctx, source, rs, length)
 	}
 	return moerr.NewInternalError(ctx, fmt.Sprintf("unsupported cast from int8 to %s", toType))
@@ -687,12 +684,11 @@ func int16ToOthers(ctx context.Context,
 	case types.T_timestamp:
 		rs := vector.MustFunctionResult[types.Timestamp](result)
 		return integerToTimestamp(source, rs, length)
-	case types.T_enum:
-		if len(toType.EnumValues) > 255 {
-			rs := vector.MustFunctionResult[uint16](result)
-			return integerToEnum(ctx, source, rs, length)
-		}
-		rs := vector.MustFunctionResult[uint8](result)
+	case types.T_enum1:
+		rs := vector.MustFunctionResult[types.Enum1](result)
+		return integerToEnum(ctx, source, rs, length)
+	case types.T_enum2:
+		rs := vector.MustFunctionResult[types.Enum2](result)
 		return integerToEnum(ctx, source, rs, length)
 	}
 	return moerr.NewInternalError(ctx, fmt.Sprintf("unsupported cast from int16 to %s", toType))
@@ -753,12 +749,11 @@ func int32ToOthers(ctx context.Context,
 	case types.T_timestamp:
 		rs := vector.MustFunctionResult[types.Timestamp](result)
 		return integerToTimestamp(source, rs, length)
-	case types.T_enum:
-		if len(toType.EnumValues) > 255 {
-			rs := vector.MustFunctionResult[uint16](result)
-			return integerToEnum(ctx, source, rs, length)
-		}
-		rs := vector.MustFunctionResult[uint8](result)
+	case types.T_enum1:
+		rs := vector.MustFunctionResult[types.Enum1](result)
+		return integerToEnum(ctx, source, rs, length)
+	case types.T_enum2:
+		rs := vector.MustFunctionResult[types.Enum2](result)
 		return integerToEnum(ctx, source, rs, length)
 	}
 	return moerr.NewInternalError(ctx, fmt.Sprintf("unsupported cast from int32 to %s", toType))
@@ -819,20 +814,11 @@ func int64ToOthers(ctx context.Context,
 	case types.T_timestamp:
 		rs := vector.MustFunctionResult[types.Timestamp](result)
 		return integerToTimestamp(source, rs, length)
-<<<<<<< Updated upstream
 	case types.T_enum1:
 		rs := vector.MustFunctionResult[types.Enum1](result)
 		return integerToEnum(ctx, source, rs, length)
 	case types.T_enum2:
 		rs := vector.MustFunctionResult[types.Enum2](result)
-=======
-	case types.T_enum:
-		if len(toType.EnumValues) > 255 {
-			rs := vector.MustFunctionResult[uint16](result)
-			return integerToEnum(ctx, source, rs, length)
-		}
-		rs := vector.MustFunctionResult[uint8](result)
->>>>>>> Stashed changes
 		return integerToEnum(ctx, source, rs, length)
 	}
 	return moerr.NewInternalError(ctx, fmt.Sprintf("unsupported cast from int64 to %s", toType))
@@ -892,12 +878,11 @@ func uint8ToOthers(ctx context.Context,
 	case types.T_timestamp:
 		rs := vector.MustFunctionResult[types.Timestamp](result)
 		return integerToTimestamp(source, rs, length)
-	case types.T_enum:
-		if len(toType.EnumValues) > 255 {
-			rs := vector.MustFunctionResult[uint16](result)
-			return integerToEnum(ctx, source, rs, length)
-		}
-		rs := vector.MustFunctionResult[uint8](result)
+	case types.T_enum1:
+		rs := vector.MustFunctionResult[types.Enum1](result)
+		return integerToEnum(ctx, source, rs, length)
+	case types.T_enum2:
+		rs := vector.MustFunctionResult[types.Enum2](result)
 		return integerToEnum(ctx, source, rs, length)
 	}
 	return moerr.NewInternalError(ctx, fmt.Sprintf("unsupported cast from uint8 to %s", toType))
@@ -957,12 +942,11 @@ func uint16ToOthers(ctx context.Context,
 	case types.T_timestamp:
 		rs := vector.MustFunctionResult[types.Timestamp](result)
 		return integerToTimestamp(source, rs, length)
-	case types.T_enum:
-		if len(toType.EnumValues) > 255 {
-			rs := vector.MustFunctionResult[uint16](result)
-			return integerToEnum(ctx, source, rs, length)
-		}
-		rs := vector.MustFunctionResult[uint8](result)
+	case types.T_enum1:
+		rs := vector.MustFunctionResult[types.Enum1](result)
+		return integerToEnum(ctx, source, rs, length)
+	case types.T_enum2:
+		rs := vector.MustFunctionResult[types.Enum2](result)
 		return integerToEnum(ctx, source, rs, length)
 	}
 	return moerr.NewInternalError(ctx, fmt.Sprintf("unsupported cast from uint16 to %s", toType))
@@ -1022,12 +1006,11 @@ func uint32ToOthers(ctx context.Context,
 	case types.T_timestamp:
 		rs := vector.MustFunctionResult[types.Timestamp](result)
 		return integerToTimestamp(source, rs, length)
-	case types.T_enum:
-		if len(toType.EnumValues) > 255 {
-			rs := vector.MustFunctionResult[uint16](result)
-			return integerToEnum(ctx, source, rs, length)
-		}
-		rs := vector.MustFunctionResult[uint8](result)
+	case types.T_enum1:
+		rs := vector.MustFunctionResult[types.Enum1](result)
+		return integerToEnum(ctx, source, rs, length)
+	case types.T_enum2:
+		rs := vector.MustFunctionResult[types.Enum2](result)
 		return integerToEnum(ctx, source, rs, length)
 	}
 	return moerr.NewInternalError(ctx, fmt.Sprintf("unsupported cast from uint32 to %s", toType))
@@ -1087,12 +1070,11 @@ func uint64ToOthers(ctx context.Context,
 	case types.T_timestamp:
 		rs := vector.MustFunctionResult[types.Timestamp](result)
 		return integerToTimestamp(source, rs, length)
-	case types.T_enum:
-		if len(toType.EnumValues) > 255 {
-			rs := vector.MustFunctionResult[uint16](result)
-			return integerToEnum(ctx, source, rs, length)
-		}
-		rs := vector.MustFunctionResult[uint8](result)
+	case types.T_enum1:
+		rs := vector.MustFunctionResult[types.Enum1](result)
+		return integerToEnum(ctx, source, rs, length)
+	case types.T_enum2:
+		rs := vector.MustFunctionResult[types.Enum2](result)
 		return integerToEnum(ctx, source, rs, length)
 	}
 	return moerr.NewInternalError(ctx, fmt.Sprintf("unsupported cast from uint64 to %s", toType))
@@ -1152,12 +1134,11 @@ func float32ToOthers(ctx context.Context,
 		types.T_binary, types.T_text, types.T_varbinary:
 		rs := vector.MustFunctionResult[types.Varlena](result)
 		return floatToStr(source, rs, length, toType)
-	case types.T_enum:
-		if len(toType.EnumValues) > 255 {
-			rs := vector.MustFunctionResult[uint16](result)
-			return floatToEnum(ctx, source, rs, length)
-		}
-		rs := vector.MustFunctionResult[uint8](result)
+	case types.T_enum1:
+		rs := vector.MustFunctionResult[types.Enum1](result)
+		return floatToEnum(ctx, source, rs, length)
+	case types.T_enum2:
+		rs := vector.MustFunctionResult[types.Enum2](result)
 		return floatToEnum(ctx, source, rs, length)
 	}
 	return moerr.NewInternalError(ctx, fmt.Sprintf("unsupported cast from float32 to %s", toType))
@@ -1217,12 +1198,11 @@ func float64ToOthers(ctx context.Context,
 		types.T_binary, types.T_text, types.T_varbinary:
 		rs := vector.MustFunctionResult[types.Varlena](result)
 		return floatToStr(source, rs, length, toType)
-	case types.T_enum:
-		if len(toType.EnumValues) > 255 {
-			rs := vector.MustFunctionResult[uint16](result)
-			return floatToEnum(ctx, source, rs, length)
-		}
-		rs := vector.MustFunctionResult[uint8](result)
+	case types.T_enum1:
+		rs := vector.MustFunctionResult[types.Enum1](result)
+		return floatToEnum(ctx, source, rs, length)
+	case types.T_enum2:
+		rs := vector.MustFunctionResult[types.Enum2](result)
 		return floatToEnum(ctx, source, rs, length)
 	}
 	return moerr.NewInternalError(ctx, fmt.Sprintf("unsupported cast from float64 to %s", toType))
@@ -1259,12 +1239,11 @@ func dateToOthers(proc *process.Process,
 		types.T_binary, types.T_varbinary, types.T_text:
 		rs := vector.MustFunctionResult[types.Varlena](result)
 		return dateToStr(source, rs, length, toType)
-	case types.T_enum:
-		if len(toType.EnumValues) > 255 {
-			rs := vector.MustFunctionResult[uint16](result)
-			return dateToEnum(proc.Ctx, source, rs, length)
-		}
-		rs := vector.MustFunctionResult[uint8](result)
+	case types.T_enum1:
+		rs := vector.MustFunctionResult[types.Enum1](result)
+		return dateToEnum(proc.Ctx, source, rs, length)
+	case types.T_enum2:
+		rs := vector.MustFunctionResult[types.Enum1](result)
 		return dateToEnum(proc.Ctx, source, rs, length)
 	}
 	return moerr.NewInternalError(proc.Ctx, fmt.Sprintf("unsupported cast from date to %s", toType))
@@ -1303,12 +1282,11 @@ func datetimeToOthers(proc *process.Process,
 		types.T_binary, types.T_varbinary, types.T_text:
 		rs := vector.MustFunctionResult[types.Varlena](result)
 		return datetimeToStr(source, rs, length, toType)
-	case types.T_enum:
-		if len(toType.EnumValues) > 255 {
-			rs := vector.MustFunctionResult[uint16](result)
-			return datetimeToEnum(proc.Ctx, source, rs, length)
-		}
-		rs := vector.MustFunctionResult[uint8](result)
+	case types.T_enum1:
+		rs := vector.MustFunctionResult[types.Enum1](result)
+		return datetimeToEnum(proc.Ctx, source, rs, length)
+	case types.T_enum2:
+		rs := vector.MustFunctionResult[types.Enum2](result)
 		return datetimeToEnum(proc.Ctx, source, rs, length)
 	}
 	return moerr.NewInternalError(proc.Ctx, fmt.Sprintf("unsupported cast from datetime to %s", toType))
@@ -1345,12 +1323,11 @@ func timestampToOthers(proc *process.Process,
 		types.T_binary, types.T_varbinary, types.T_text:
 		rs := vector.MustFunctionResult[types.Varlena](result)
 		return timestampToStr(source, rs, length, zone, toType)
-	case types.T_enum:
-		if len(toType.EnumValues) > 255 {
-			rs := vector.MustFunctionResult[uint16](result)
-			return timestampToEnum(proc.Ctx, source, rs, length, zone)
-		}
-		rs := vector.MustFunctionResult[uint8](result)
+	case types.T_enum1:
+		rs := vector.MustFunctionResult[types.Enum1](result)
+		return timestampToEnum(proc.Ctx, source, rs, length, zone)
+	case types.T_enum2:
+		rs := vector.MustFunctionResult[types.Enum2](result)
 		return timestampToEnum(proc.Ctx, source, rs, length, zone)
 	}
 	return moerr.NewInternalError(proc.Ctx, fmt.Sprintf("unsupported cast from timestamp to %s", toType))
@@ -1406,12 +1383,11 @@ func timeToOthers(ctx context.Context,
 	case types.T_decimal128:
 		rs := vector.MustFunctionResult[types.Decimal128](result)
 		return timeToDecimal128(ctx, source, rs, length)
-	case types.T_enum:
-		if len(toType.EnumValues) > 255 {
-			rs := vector.MustFunctionResult[uint16](result)
-			return timeToEnum(ctx, source, rs, length)
-		}
-		rs := vector.MustFunctionResult[uint8](result)
+	case types.T_enum1:
+		rs := vector.MustFunctionResult[types.Enum1](result)
+		return timeToEnum(ctx, source, rs, length)
+	case types.T_enum2:
+		rs := vector.MustFunctionResult[types.Enum2](result)
 		return timeToEnum(ctx, source, rs, length)
 	}
 	return moerr.NewInternalError(ctx, fmt.Sprintf("unsupported cast from time to %s", toType))
@@ -1455,12 +1431,11 @@ func decimal64ToOthers(ctx context.Context,
 		types.T_binary, types.T_varbinary, types.T_text:
 		rs := vector.MustFunctionResult[types.Varlena](result)
 		return decimal64ToStr(source, rs, length, toType)
-	case types.T_enum:
-		if len(toType.EnumValues) > 255 {
-			rs := vector.MustFunctionResult[uint16](result)
-			return decimal64ToEnum(ctx, source, rs, length)
-		}
-		rs := vector.MustFunctionResult[uint8](result)
+	case types.T_enum1:
+		rs := vector.MustFunctionResult[types.Enum1](result)
+		return decimal64ToEnum(ctx, source, rs, length)
+	case types.T_enum2:
+		rs := vector.MustFunctionResult[types.Enum2](result)
 		return decimal64ToEnum(ctx, source, rs, length)
 	}
 	return moerr.NewInternalError(ctx, fmt.Sprintf("unsupported cast from decimal64 to %s", toType))
@@ -1507,18 +1482,17 @@ func decimal128ToOthers(ctx context.Context,
 		types.T_binary, types.T_varbinary, types.T_text:
 		rs := vector.MustFunctionResult[types.Varlena](result)
 		return decimal128ToStr(source, rs, length, toType)
-	case types.T_enum:
-		if len(toType.EnumValues) > 255 {
-			rs := vector.MustFunctionResult[uint16](result)
-			return decimal128ToEnum(ctx, source, rs, length)
-		}
-		rs := vector.MustFunctionResult[uint8](result)
+	case types.T_enum1:
+		rs := vector.MustFunctionResult[types.Enum1](result)
+		return decimal128ToEnum(ctx, source, rs, length)
+	case types.T_enum2:
+		rs := vector.MustFunctionResult[types.Enum2](result)
 		return decimal128ToEnum(ctx, source, rs, length)
 	}
 	return moerr.NewInternalError(ctx, fmt.Sprintf("unsupported cast from decimal128 to %s", toType))
 }
 
-func EnumToOthers[T uint8 | uint16](proc *process.Process, source vector.FunctionParameterWrapper[T],
+func EnumToOthers[T types.Enum](proc *process.Process, source vector.FunctionParameterWrapper[T],
 	toType types.Type, result vector.FunctionResultWrapper, length int) error {
 	ctx := proc.Ctx
 	switch toType.Oid {
@@ -1546,9 +1520,6 @@ func EnumToOthers[T uint8 | uint16](proc *process.Process, source vector.Functio
 	case types.T_uint64:
 		rs := vector.MustFunctionResult[uint64](result)
 		return EnumToNumeric(ctx, source, rs, 64, length)
-	case types.T_float32:
-		rs := vector.MustFunctionResult[float32](result)
-		return EnumToNumeric(ctx, source, rs, 32, length)
 	}
 	return moerr.NewInternalError(ctx, fmt.Sprintf("unsupported cast from %s to %s", source.GetType(), toType))
 }
@@ -1623,20 +1594,11 @@ func strTypeToOthers(proc *process.Process,
 		types.T_binary, types.T_varbinary, types.T_blob:
 		rs := vector.MustFunctionResult[types.Varlena](result)
 		return strToStr(proc.Ctx, source, rs, length, toType)
-<<<<<<< Updated upstream
 	case types.T_enum1:
 		rs := vector.MustFunctionResult[types.Enum1](result)
 		return strToEnum(ctx, source, rs, length)
 	case types.T_enum2:
 		rs := vector.MustFunctionResult[types.Enum2](result)
-=======
-	case types.T_enum:
-		if len(toType.EnumValues) > 255 {
-			rs := vector.MustFunctionResult[uint16](result)
-			return strToEnum(ctx, source, rs, length)
-		}
-		rs := vector.MustFunctionResult[uint8](result)
->>>>>>> Stashed changes
 		return strToEnum(ctx, source, rs, length)
 	}
 	return moerr.NewInternalError(ctx, fmt.Sprintf("unsupported cast from %s to %s", source.GetType(), toType))
@@ -1768,10 +1730,7 @@ func floatNumToFixFloat[T1 constraints.Float](
 	return T1(v), nil
 }
 
-<<<<<<< Updated upstream
-func strToEnum[T types.Enum](
-=======
-func EnumToNumeric[T1 uint8 | uint16, T2 constraints.Integer](
+func EnumToNumeric[T1 types.Enum, T2 constraints.Integer](
 	ctx context.Context,
 	from vector.FunctionParameterWrapper[T1], to *vector.FunctionResult[T2], size, length int) error {
 	var i uint64
@@ -1801,7 +1760,7 @@ func EnumToNumeric[T1 uint8 | uint16, T2 constraints.Integer](
 	return nil
 }
 
-func decimal128ToEnum[T uint8 | uint16](
+func decimal128ToEnum[T types.Enum](
 	ctx context.Context,
 	from vector.FunctionParameterWrapper[types.Decimal128], to *vector.FunctionResult[T], length int) error {
 	var i uint64
@@ -1833,7 +1792,7 @@ func decimal128ToEnum[T uint8 | uint16](
 	return nil
 }
 
-func decimal64ToEnum[T uint8 | uint16](
+func decimal64ToEnum[T types.Enum](
 	ctx context.Context,
 	from vector.FunctionParameterWrapper[types.Decimal64], to *vector.FunctionResult[T], length int) error {
 	var i uint64
@@ -1866,7 +1825,7 @@ func decimal64ToEnum[T uint8 | uint16](
 	return nil
 }
 
-func timeToEnum[T uint8 | uint16](
+func timeToEnum[T types.Enum](
 	ctx context.Context,
 	from vector.FunctionParameterWrapper[types.Time], to *vector.FunctionResult[T], length int) error {
 	totype := to.GetType()
@@ -1910,7 +1869,7 @@ func timeToEnum[T uint8 | uint16](
 	return nil
 }
 
-func timestampToEnum[T uint8 | uint16](
+func timestampToEnum[T types.Enum](
 	ctx context.Context,
 	from vector.FunctionParameterWrapper[types.Timestamp], to *vector.FunctionResult[T], length int, zone *time.Location) error {
 	totype := to.GetType()
@@ -1954,7 +1913,7 @@ func timestampToEnum[T uint8 | uint16](
 	return nil
 }
 
-func datetimeToEnum[T uint8 | uint16](
+func datetimeToEnum[T types.Enum](
 	ctx context.Context,
 	from vector.FunctionParameterWrapper[types.Datetime], to *vector.FunctionResult[T], length int) error {
 	totype := to.GetType()
@@ -1998,7 +1957,7 @@ func datetimeToEnum[T uint8 | uint16](
 	return nil
 }
 
-func dateToEnum[T uint8 | uint16](
+func dateToEnum[T types.Enum](
 	ctx context.Context,
 	from vector.FunctionParameterWrapper[types.Date], to *vector.FunctionResult[T], length int) error {
 	totype := to.GetType()
@@ -2044,7 +2003,6 @@ func dateToEnum[T uint8 | uint16](
 }
 
 func strToEnum[T uint8 | uint16](
->>>>>>> Stashed changes
 	ctx context.Context,
 	from vector.FunctionParameterWrapper[types.Varlena], to *vector.FunctionResult[T], length int) error {
 	totype := to.GetType()
@@ -2089,10 +2047,7 @@ func strToEnum[T uint8 | uint16](
 	return nil
 }
 
-<<<<<<< Updated upstream
-func integerToEnum[T1 constraints.Integer, T2 types.Enum](
-=======
-func floatToEnum[T1 constraints.Float, T2 uint8 | uint16](
+func floatToEnum[T1 constraints.Float, T2 types.Enum](
 	ctx context.Context,
 	from vector.FunctionParameterWrapper[T1], to *vector.FunctionResult[T2], length int) error {
 	var tov T2
@@ -2115,7 +2070,7 @@ func floatToEnum[T1 constraints.Float, T2 uint8 | uint16](
 	return nil
 }
 
-func boolToEnum[T2 uint8 | uint16](
+func boolToEnum[T2 types.Enum](
 	ctx context.Context,
 	from vector.FunctionParameterWrapper[bool], to *vector.FunctionResult[T2], length int) error {
 	var tov T2
@@ -2138,8 +2093,7 @@ func boolToEnum[T2 uint8 | uint16](
 	return nil
 }
 
-func integerToEnum[T1 constraints.Integer, T2 uint8 | uint16](
->>>>>>> Stashed changes
+func integerToEnum[T1 constraints.Integer, T2 types.Enum](
 	ctx context.Context,
 	from vector.FunctionParameterWrapper[T1], to *vector.FunctionResult[T2], length int) error {
 	var tov T2
