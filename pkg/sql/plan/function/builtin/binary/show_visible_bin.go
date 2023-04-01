@@ -83,8 +83,8 @@ func showType(s [][]byte, showLen bool) ([]string, error) {
 			if types.IsEnum(tp.Oid) {
 				sv := ""
 				for _, v := range tp.EnumValues {
-					sv += v
-					sv += ","
+					app := fmt.Sprintf("'%s',", v)
+					sv += app
 				}
 				// Remove trailing ','
 				sv = string(([]byte)(sv)[:len(sv)-1])

@@ -2110,6 +2110,10 @@ var (
 			input:  "select BINARY 124",
 			output: "select binary(124)",
 		},
+		{
+			input:  "select cast('a' as enum('s','m','l'))",
+			output: "select cast(a as enum)",
+		},
 	}
 )
 
