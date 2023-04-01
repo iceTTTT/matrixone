@@ -185,7 +185,7 @@ func (bat *Batch) Equals(o *Batch) bool {
 func (bat *Batch) WriteTo(w io.Writer) (n int64, err error) {
 	var nr int
 	var tmpn int64
-	buffer := MakeVector(types.T_varchar.ToType(), false)
+	buffer := MakeVector(types.T_varchar.ToType())
 	defer buffer.Close()
 	// 1. Vector cnt
 	// if nr, err = w.Write(types.EncodeFixed(uint16(len(bat.Vecs)))); err != nil {
@@ -199,10 +199,7 @@ func (bat *Batch) WriteTo(w io.Writer) (n int64, err error) {
 		buffer.Append([]byte(bat.Attrs[i]))
 		vt := vec.GetType()
 		var data []byte
-		data, err = types.Encode(vt)
-		if err != nil {
-			return
-		}
+		data, _ = types.EncodeType(&vt)
 		buffer.Append(data)
 	}
 	if tmpn, err = buffer.WriteTo(w); err != nil {
@@ -241,7 +238,7 @@ func (bat *Batch) WriteTo(w io.Writer) (n int64, err error) {
 
 func (bat *Batch) ReadFrom(r io.Reader) (n int64, err error) {
 	var tmpn int64
-	buffer := MakeVector(types.T_varchar.ToType(), false)
+	buffer := MakeVector(types.T_varchar.ToType())
 	defer buffer.Close()
 	if tmpn, err = buffer.ReadFrom(r); err != nil {
 		return
@@ -259,13 +256,11 @@ func (bat *Batch) ReadFrom(r io.Reader) (n int64, err error) {
 		bat.Attrs[i] = string(buf)
 		bat.nameidx[bat.Attrs[i]] = i
 		buf = buffer.Get(pos).([]byte)
-		if err = types.Decode(buf, &vecTypes[i]); err != nil {
-			return
-		}
+		vecTypes[i] = types.DecodeType(buf)
 		pos++
 	}
 	for _, vecType := range vecTypes {
-		vec := MakeVector(vecType, true)
+		vec := MakeVector(vecType)
 		if tmpn, err = vec.ReadFrom(r); err != nil {
 			return
 		}

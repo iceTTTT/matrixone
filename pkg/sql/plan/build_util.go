@@ -98,6 +98,12 @@ func getTypeFromAst(ctx context.Context, typ tree.ResolvableTypeReference) (*pla
 			// the defaultMaxLength
 			// Should always specify length to varbinary.
 			fstr := strings.ToLower(n.InternalType.FamilyString)
+			// Check explicit casting.
+			if fstr == "binary" && n.InternalType.Scale == -1 {
+				r := &plan.Type{Id: int32(types.T_binary), Width: width}
+				r.Scale = -1
+				return r, nil
+			}
 			if width == -1 {
 				// create table t1(a char) -> DisplayWith = -1；but get width=1 in MySQL and PgSQL
 				if fstr == "char" || fstr == "binary" {
@@ -106,7 +112,7 @@ func getTypeFromAst(ctx context.Context, typ tree.ResolvableTypeReference) (*pla
 					width = types.MaxVarcharLen
 				}
 
-				if fstr == "varbianry" {
+				if fstr == "varbinary" {
 					return nil, moerr.NewSyntaxError(ctx, "Should specify width to varbinary type")
 				}
 			}
@@ -161,13 +167,17 @@ func getTypeFromAst(ctx context.Context, typ tree.ResolvableTypeReference) (*pla
 			if n.InternalType.Scale == -1 {
 				return nil, moerr.NewInvalidInput(ctx, "Can not cast to enum type explicitly")
 			}
-			if len(n.InternalType.EnumValues) > types.MaxEnumSize {
+			lens := len(n.InternalType.EnumValues)
+			if lens > types.MaxEnumSize {
 				return nil, moerr.NewInvalidInput(ctx, "Too many values for enum type")
 			}
-			if len(n.InternalType.EnumValues) == 0 {
+			if lens == 0 {
 				return nil, moerr.NewInvalidInput(ctx, "Should assign string values to enum type")
 			}
-			return &plan.Type{Id: int32(types.T_enum), EnumValues: n.InternalType.EnumValues}, nil
+			if lens <= 255 {
+				return &plan.Type{Id: int32(types.T_enum1), EnumValues: n.InternalType.EnumValues}, nil
+			}
+			return &plan.Type{Id: int32(types.T_enum2), EnumValues: n.InternalType.EnumValues}, nil
 		default:
 			return nil, moerr.NewNYI(ctx, "data type: '%s'", tree.String(&n.InternalType, dialect.MYSQL))
 		}

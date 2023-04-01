@@ -29,8 +29,8 @@ import (
 )
 
 const (
-	// TSize is unused.
 	TSize          int = int(unsafe.Sizeof(Type{}))
+	SSize          int = int(unsafe.Sizeof([]string{}))
 	DateSize       int = 4
 	TimeSize       int = 8
 	DatetimeSize   int = 8
@@ -98,12 +98,30 @@ func DecodeJson(buf []byte) bytejson.ByteJson {
 	return bj
 }
 
-func EncodeType(v *Type) []byte {
-	return unsafe.Slice((*byte)(unsafe.Pointer(v)), TSize)
+func EncodeType(v *Type) ([]byte, int32) {
+	n := int32(TSize - SSize)
+	dat := unsafe.Slice((*byte)(unsafe.Pointer(v)), TSize-SSize)
+	// For enum type encode the string list.
+	if v.EnumValues != nil {
+		sdat := EncodeStringSlice(v.EnumValues)
+		n += int32(len(sdat))
+		dat = append(dat, sdat...)
+	}
+	return dat, n
 }
 
 func DecodeType(v []byte) Type {
-	return *(*Type)(unsafe.Pointer(&v[0]))
+	basedata := v[:TSize-SSize]
+	typdata := make([]byte, 0, TSize)
+	typdata = append(typdata, basedata...)
+	mock := []string(nil)
+	typdata = append(typdata, unsafe.Slice((*byte)(unsafe.Pointer(&mock)), SSize)...)
+	basetyp := *(*Type)(unsafe.Pointer(&typdata[0]))
+	v = v[TSize-SSize:]
+	if len(v) != 0 {
+		basetyp.EnumValues = DecodeStringSlice(v)
+	}
+	return basetyp
 }
 
 func EncodeFixed[T FixedSizeT](v T) []byte {
@@ -346,11 +364,10 @@ func DecodeValue(val []byte, typ Type) any {
 		return DecodeFixed[Rowid](val)
 	case T_char, T_varchar, T_blob, T_json, T_text, T_binary, T_varbinary:
 		return val
-	case T_enum:
-		if typ.GetSize() == 1 {
-			return DecodeFixed[uint8](val)
-		}
-		return DecodeFixed[uint16](val)
+	case T_enum1:
+		return DecodeFixed[Enum1](val)
+	case T_enum2:
+		return DecodeFixed[Enum2](val)
 	default:
 		panic(fmt.Sprintf("unsupported type %v", typ))
 	}
@@ -400,11 +417,10 @@ func EncodeValue(val any, typ Type) []byte {
 		return EncodeFixed(val.(Rowid))
 	case T_char, T_varchar, T_blob, T_json, T_text, T_binary, T_varbinary:
 		return val.([]byte)
-	case T_enum:
-		if typ.GetSize() == 1 {
-			return EncodeFixed(val.(uint8))
-		}
-		return EncodeFixed(val.(uint16))
+	case T_enum1:
+		return EncodeFixed(val.(Enum1))
+	case T_enum2:
+		return EncodeFixed(val.(Enum2))
 	default:
 		panic(fmt.Sprintf("unsupported type %v", typ))
 	}

@@ -16,6 +16,8 @@ package vector
 
 import (
 	"context"
+	"strings"
+
 	"github.com/matrixorigin/matrixone/pkg/common/moerr"
 	"github.com/matrixorigin/matrixone/pkg/common/mpool"
 	"github.com/matrixorigin/matrixone/pkg/container/nulls"
@@ -23,7 +25,6 @@ import (
 	"github.com/matrixorigin/matrixone/pkg/pb/api"
 	"github.com/matrixorigin/matrixone/pkg/pb/plan"
 	"golang.org/x/exp/constraints"
-	"strings"
 )
 
 func MustFixedCol[T any](v *Vector) []T {
@@ -207,12 +208,10 @@ func (v *Vector) setupColFromData() {
 			v.col = DecodeFixedCol[types.Rowid](v)
 		case types.T_Blockid:
 			v.col = DecodeFixedCol[types.Blockid](v)
-		case types.T_enum:
-			if len(v.GetType().EnumValues) <= 255 {
-				v.col = DecodeFixedCol[uint8](v)
-			} else {
-				v.col = DecodeFixedCol[uint16](v)
-			}
+		case types.T_enum1:
+			v.col = DecodeFixedCol[types.Enum1](v)
+		case types.T_enum2:
+			v.col = DecodeFixedCol[types.Enum2](v)
 		default:
 			panic("unknown type")
 		}
@@ -246,11 +245,6 @@ func ProtoVectorToVector(vec *api.Vector) (*Vector, error) {
 		cantFreeData: true,
 		cantFreeArea: true,
 	}
-	// Check for enum type, assign the enumvalues.
-	rvec.typ.EnumValues = vec.Type.EnumValues
-	if rvec.typ.EnumValues != nil && len(rvec.typ.EnumValues) <= 255 {
-		rvec.typ.Size = 1
-	}
 	if vec.IsConst {
 		rvec.class = CONSTANT
 	} else {
@@ -278,8 +272,10 @@ func TypeToProtoType(typ types.Type) *plan.Type {
 	}
 }
 
-func ProtoTypeToType(typ *plan.Type) types.Type {
-	return types.New(types.T(typ.Id), typ.Width, typ.Scale)
+func ProtoTypeToType(typ *plan.Type) (rtyp types.Type) {
+	rtyp = types.New(types.T(typ.Id), typ.Width, typ.Scale)
+	rtyp.EnumValues = typ.EnumValues
+	return
 }
 
 // CompareAndCheckIntersect  we use this method for eval expr by zonemap
