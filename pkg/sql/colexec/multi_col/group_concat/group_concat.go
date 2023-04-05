@@ -453,6 +453,12 @@ func VectorToString(vec *vector.Vector, rowIndex int) (string, error) {
 	case types.T_datetime:
 		val := vector.GetFixedAt[types.Datetime](vec, rowIndex)
 		return val.String(), nil
+	case types.T_enum1:
+		val := vector.GetFixedAt[types.Enum1](vec, rowIndex)
+		return val.ToString(vec.GetType())
+	case types.T_enum2:
+		val := vector.GetFixedAt[types.Enum2](vec, rowIndex)
+		return val.ToString(vec.GetType())
 	default:
 		return "", nil
 	}

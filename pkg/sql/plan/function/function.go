@@ -500,6 +500,7 @@ func checkTypeWidth(realArgs []types.Type, rt *types.Type) {
 func copyType(dst, src *types.Type) {
 	dst.Width = src.Width
 	dst.Scale = src.Scale
+	dst.EnumValues = src.EnumValues
 }
 
 func getOidSlice(ts []types.Type) []types.T {

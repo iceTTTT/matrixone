@@ -504,6 +504,10 @@ func (v *Vector) ToConst(row, length int, mp *mpool.MPool) *Vector {
 		return NewConstFixed(v.typ, v.col.([]types.Blockid)[row], length, mp)
 	case types.T_char, types.T_varchar, types.T_binary, types.T_varbinary, types.T_json, types.T_blob, types.T_text:
 		return NewConstBytes(v.typ, v.GetBytesAt(row), length, mp)
+	case types.T_enum1:
+		return NewConstFixed(v.typ, v.col.([]types.Enum1)[row], length, mp)
+	case types.T_enum2:
+		return NewConstFixed(v.typ, v.col.([]types.Enum2)[row], length, mp)
 	}
 	return nil
 }
@@ -613,6 +617,10 @@ func (v *Vector) Shrink(sels []int64, negate bool) {
 		shrinkFixed[types.Rowid](v, sels, negate)
 	case types.T_Blockid:
 		shrinkFixed[types.Blockid](v, sels, negate)
+	case types.T_enum1:
+		shrinkFixed[types.Enum1](v, sels, negate)
+	case types.T_enum2:
+		shrinkFixed[types.Enum2](v, sels, negate)
 	default:
 		panic(fmt.Sprintf("unexpect type %s for function vector.Shrink", v.typ))
 	}
@@ -669,6 +677,10 @@ func (v *Vector) Shuffle(sels []int64, mp *mpool.MPool) error {
 		shuffleFixed[types.Rowid](v, sels, mp)
 	case types.T_Blockid:
 		shuffleFixed[types.Blockid](v, sels, mp)
+	case types.T_enum1:
+		shuffleFixed[types.Enum1](v, sels, mp)
+	case types.T_enum2:
+		shuffleFixed[types.Enum2](v, sels, mp)
 	default:
 		panic(fmt.Sprintf("unexpect type %s for function vector.Shuffle", v.typ))
 	}
@@ -1229,6 +1241,10 @@ func AppendAny(vec *Vector, val any, isNull bool, mp *mpool.MPool) error {
 		return appendOneFixed(vec, val.(types.Blockid), false, mp)
 	case types.T_char, types.T_varchar, types.T_binary, types.T_varbinary, types.T_json, types.T_blob, types.T_text:
 		return appendOneBytes(vec, val.([]byte), false, mp)
+	case types.T_enum1:
+		return appendOneFixed(vec, val.(types.Enum1), false, mp)
+	case types.T_enum2:
+		return appendOneFixed(vec, val.(types.Enum2), false, mp)
 	}
 	return nil
 }

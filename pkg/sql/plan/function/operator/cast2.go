@@ -1520,6 +1520,44 @@ func EnumToOthers[T types.Enum](proc *process.Process, source vector.FunctionPar
 	case types.T_uint64:
 		rs := vector.MustFunctionResult[uint64](result)
 		return EnumToNumeric(ctx, source, rs, 64, length)
+	case types.T_float32:
+		rs := vector.MustFunctionResult[float32](result)
+		return EnumToNumeric(ctx, source, rs, 32, length)
+	case types.T_float64:
+		rs := vector.MustFunctionResult[float64](result)
+		return EnumToNumeric(ctx, source, rs, 64, length)
+	case types.T_timestamp:
+		rs := vector.MustFunctionResult[types.Timestamp](result)
+		zone := time.Local
+		if proc != nil {
+			zone = proc.SessionInfo.TimeZone
+		}
+		return EnumToTimestamp(ctx, source, rs, length, zone)
+	case types.T_time:
+		rs := vector.MustFunctionResult[types.Time](result)
+		return EnumToTime(ctx, source, rs, length)
+	case types.T_datetime:
+		rs := vector.MustFunctionResult[types.Datetime](result)
+		return EnumToDateTime(ctx, source, rs, length)
+	case types.T_date:
+		rs := vector.MustFunctionResult[types.Date](result)
+		return EnumToDate(ctx, source, rs, length)
+	case types.T_char, types.T_varchar, types.T_text,
+		types.T_binary, types.T_varbinary, types.T_blob:
+		rs := vector.MustFunctionResult[types.Varlena](result)
+		return EnumToStr(ctx, source, rs, length)
+	case types.T_decimal64:
+		rs := vector.MustFunctionResult[types.Decimal64](result)
+		return EnumToDecimal64(source, rs, length)
+	case types.T_decimal128:
+		rs := vector.MustFunctionResult[types.Decimal128](result)
+		return EnumToDecimal128(source, rs, length)
+	case types.T_enum1:
+		rs := vector.MustFunctionResult[types.Enum1](result)
+		return EnumToEnum(ctx, source, rs, length)
+	case types.T_enum2:
+		rs := vector.MustFunctionResult[types.Enum2](result)
+		return EnumToEnum(ctx, source, rs, length)
 	}
 	return moerr.NewInternalError(ctx, fmt.Sprintf("unsupported cast from %s to %s", source.GetType(), toType))
 }
@@ -1612,6 +1650,12 @@ func uuidToOthers(ctx context.Context,
 		types.T_binary, types.T_varbinary, types.T_text:
 		rs := vector.MustFunctionResult[types.Varlena](result)
 		return uuidToStr(source, rs, length, toType)
+	case types.T_enum1:
+		rs := vector.MustFunctionResult[types.Enum1](result)
+		return uuidToEnum(source, rs, length, toType)
+	case types.T_enum2:
+		rs := vector.MustFunctionResult[types.Enum2](result)
+		return uuidToEnum(source, rs, length, toType)
 	}
 	return moerr.NewInternalError(ctx, fmt.Sprintf("unsupported cast from uuid to %s", toType))
 }
@@ -1730,7 +1774,252 @@ func floatNumToFixFloat[T1 constraints.Float](
 	return T1(v), nil
 }
 
-func EnumToNumeric[T1 types.Enum, T2 constraints.Integer](
+func EnumToEnum[T1, T2 types.Enum](
+	ctx context.Context, from vector.FunctionParameterWrapper[T1],
+	to *vector.FunctionResult[T2], length int) error {
+	var i uint64
+	var dftValue T2
+	times := uint64(length)
+	//Only matching string value can be inserted.
+	for i = 0; i < times; i++ {
+		v, isnull := from.GetValue(i)
+		if isnull {
+			if err := to.Append(dftValue, true); err != nil {
+				return err
+			}
+		} else {
+			s := from.GetType().EnumValues[v-1]
+			// try matching
+			tev := to.GetType().EnumValues
+			isMatched := false
+			for i := range tev {
+				if s == tev[i] {
+					isMatched = true
+					if err := to.Append(T2(i+1), false); err != nil {
+						return err
+					}
+				}
+			}
+			if isMatched {
+				continue
+			}
+			return moerr.NewDataTruncatedNoCtx("Enum", " Inserted enum value doesn't match")
+		}
+	}
+	return nil
+}
+
+func EnumToDecimal128[T types.Enum](
+	from vector.FunctionParameterWrapper[T],
+	to *vector.FunctionResult[types.Decimal128], length int) error {
+	var i uint64
+	l := uint64(length)
+	var dft types.Decimal128
+	totype := to.GetType()
+	for i = 0; i < l; i++ {
+		v, null := from.GetValue(i)
+		if null {
+			if err := to.Append(dft, true); err != nil {
+				return err
+			}
+		} else {
+			result := types.Decimal128{B0_63: uint64(v), B64_127: 0}
+			result, _ = result.Scale(totype.Scale)
+			if err := to.Append(result, false); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+func EnumToDecimal64[T types.Enum](
+	from vector.FunctionParameterWrapper[T],
+	to *vector.FunctionResult[types.Decimal64], length int) error {
+	var i uint64
+	l := uint64(length)
+	var dft types.Decimal64
+	totype := to.GetType()
+	for i = 0; i < l; i++ {
+		v, null := from.GetValue(i)
+		if null {
+			if err := to.Append(dft, true); err != nil {
+				return err
+			}
+		} else {
+			result := types.Decimal64(uint64(v))
+			result, _ = result.Scale(totype.Scale)
+			if err := to.Append(result, false); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+func EnumToStr[T types.Enum](
+	ctx context.Context, from vector.FunctionParameterWrapper[T],
+	to *vector.FunctionResult[types.Varlena], length int) error {
+	totype := to.GetType()
+	destLen := int(totype.Width)
+	var i uint64
+	var l = uint64(length)
+	if totype.Oid != types.T_text && destLen != 0 {
+		for i = 0; i < l; i++ {
+			v, null := from.GetValue(i)
+			if null {
+				if err := to.AppendBytes(nil, true); err != nil {
+					return err
+				}
+				continue
+			}
+			// check the length.
+			s := from.GetType().EnumValues[v-1]
+			bos := []byte(s)
+			if utf8.RuneCountInString(s) > destLen {
+				return formatCastError(ctx, from.GetSourceVector(), totype, fmt.Sprintf(
+					"Src length %v is larger than Dest length %v", len(s), destLen))
+			}
+			// for binary type compare len(v).
+			if (totype.Oid == types.T_binary || totype.Oid == types.T_varbinary) && len(bos) > destLen {
+				return formatCastError(ctx, from.GetSourceVector(), totype, fmt.Sprintf(
+					"Src length %v is larger than Dest length %v", len(bos), destLen))
+			}
+			if totype.Oid == types.T_binary && len(bos) < destLen {
+				add0 := destLen - len(bos)
+				for ; add0 != 0; add0-- {
+					bos = append(bos, 0)
+				}
+			}
+			if err := to.AppendBytes(bos, false); err != nil {
+				return err
+			}
+		}
+	} else {
+		for i = 0; i < l; i++ {
+			v, null := from.GetValue(i)
+			s := from.GetType().EnumValues[v-1]
+			bos := []byte(s)
+			if null {
+				if err := to.AppendBytes(nil, true); err != nil {
+					return err
+				}
+				continue
+			}
+			if err := to.AppendBytes(bos, false); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+
+}
+
+func EnumToDate[T types.Enum](
+	ctx context.Context, from vector.FunctionParameterWrapper[T], to *vector.FunctionResult[types.Date], length int) error {
+	var i uint64
+	var l = uint64(length)
+	var dft types.Date
+	for i = 0; i < l; i++ {
+		v, null := from.GetValue(i)
+		s := from.GetType().EnumValues[v-1]
+		if null || s == "" {
+			if err := to.Append(dft, true); err != nil {
+				return err
+			}
+		} else {
+			val, err := types.ParseDateCast(s)
+			if err != nil {
+				return err
+			}
+			if err = to.Append(val, false); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+
+}
+
+func EnumToDateTime[T types.Enum](
+	ctx context.Context, from vector.FunctionParameterWrapper[T], to *vector.FunctionResult[types.Datetime], length int) error {
+	var i uint64
+	var l = uint64(length)
+	var dft types.Datetime
+	totype := to.GetType()
+	for i = 0; i < l; i++ {
+		v, null := from.GetValue(i)
+		s := from.GetType().EnumValues[v-1]
+		if null || s == "" {
+			if err := to.Append(dft, true); err != nil {
+				return err
+			}
+		} else {
+			val, err := types.ParseDatetime(s, totype.Scale)
+			if err != nil {
+				return err
+			}
+			if err = to.Append(val, false); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+func EnumToTime[T types.Enum](
+	ctx context.Context, from vector.FunctionParameterWrapper[T], to *vector.FunctionResult[types.Time], length int) error {
+	var i uint64
+	var l = uint64(length)
+	var dft types.Time
+	totype := to.GetType()
+	for i = 0; i < l; i++ {
+		v, null := from.GetValue(i)
+		s := from.GetType().EnumValues[v-1]
+		if null || s == "" {
+			if err := to.Append(dft, true); err != nil {
+				return err
+			}
+		} else {
+			val, err := types.ParseTime(s, totype.Scale)
+			if err != nil {
+				return err
+			}
+			if err = to.Append(val, false); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+func EnumToTimestamp[T types.Enum](
+	ctx context.Context, from vector.FunctionParameterWrapper[T], to *vector.FunctionResult[types.Timestamp], length int, zone *time.Location) error {
+	var i uint64
+	var l = uint64(length)
+	var dft types.Timestamp
+	totype := to.GetType()
+	for i = 0; i < l; i++ {
+		v, null := from.GetValue(i)
+		s := from.GetType().EnumValues[v-1]
+		if null || s == "" {
+			if err := to.Append(dft, true); err != nil {
+				return err
+			}
+		} else {
+			val, err := types.ParseTimestamp(zone, s, totype.Scale)
+			if err != nil {
+				return err
+			}
+			if err = to.Append(val, false); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+func EnumToNumeric[T1 types.Enum, T2 constraints.Integer | constraints.Float](
 	ctx context.Context,
 	from vector.FunctionParameterWrapper[T1], to *vector.FunctionResult[T2], size, length int) error {
 	var i uint64
@@ -1738,7 +2027,23 @@ func EnumToNumeric[T1 types.Enum, T2 constraints.Integer](
 	times := uint64(length)
 	// To float.
 	if to.GetType().Scale >= 0 && to.GetType().Width > 0 {
-		// No implementation.
+		max_value := math.Pow10(int(to.GetType().Width-to.GetType().Scale)) - 1
+		for i = 0; i < uint64(length); i++ {
+			v, isnull := from.GetValue(i)
+			if isnull {
+				if err := to.Append(dftValue, true); err != nil {
+					return err
+				}
+			} else {
+				if float64(v) < -max_value || float64(v) > max_value {
+					return moerr.NewOutOfRange(ctx, "float", "value '%v'", v)
+				}
+				if err := to.Append(T2(v), false); err != nil {
+					return err
+				}
+			}
+		}
+		return nil
 	}
 	// To integer.
 	if err := overflowForNumericToNumeric[T1, T2](ctx, from.UnSafeGetAllValue()); err != nil {
@@ -1755,6 +2060,48 @@ func EnumToNumeric[T1 types.Enum, T2 constraints.Integer](
 			if err := to.Append(T2(v), false); err != nil {
 				return err
 			}
+		}
+	}
+	return nil
+}
+
+func uuidToEnum[T types.Enum](
+	from vector.FunctionParameterWrapper[types.Uuid],
+	to *vector.FunctionResult[T], length int, toType types.Type) error {
+	var i uint64
+	var l = uint64(length)
+	for i = 0; i < l; i++ {
+		v, null := from.GetValue(i)
+		if null {
+			if err := to.AppendBytes(nil, true); err != nil {
+				return err
+			}
+		} else {
+			s := v.ToString()
+			isMatched := false
+			for i, ev := range toType.EnumValues {
+				//Matched. Insert and break.
+				if s == ev {
+					if err := to.Append(T(i+1), false); err != nil {
+						return err
+					}
+					isMatched = true
+					break
+				}
+			}
+			if isMatched {
+				continue
+			}
+			// Check casting to number.
+			if in, err := strconv.ParseInt(s, 10, 64); err == nil &&
+				in <= int64(len(toType.EnumValues)) && in > 0 {
+				if err = to.Append(T(in), false); err != nil {
+					return err
+				}
+				continue
+			}
+			// Not exists, report error.
+			return moerr.NewInvalidInputNoCtx("Insert string is not in the enum's string list")
 		}
 	}
 	return nil
@@ -2002,7 +2349,7 @@ func dateToEnum[T types.Enum](
 	return nil
 }
 
-func strToEnum[T uint8 | uint16](
+func strToEnum[T types.Enum](
 	ctx context.Context,
 	from vector.FunctionParameterWrapper[types.Varlena], to *vector.FunctionResult[T], length int) error {
 	totype := to.GetType()
@@ -2033,7 +2380,7 @@ func strToEnum[T uint8 | uint16](
 				continue
 			}
 			// Check casting to number.
-			if in, err := strconv.ParseInt(string(v), 10, 64); err == nil &&
+			if in, err := strconv.ParseInt(s, 10, 64); err == nil &&
 				in <= int64(len(totype.EnumValues)) && in > 0 {
 				if err = to.Append(T(in), false); err != nil {
 					return err
@@ -4197,8 +4544,13 @@ func strToStr(
 				return formatCastError(ctx, from.GetSourceVector(), totype, fmt.Sprintf(
 					"Src length %v is larger than Dest length %v", len(s), destLen))
 			}
-			if toType.Oid == types.T_binary && len(v) < int(toType.Width) {
-				add0 := int(toType.Width) - len(v)
+			// for binary type compare len(v).
+			if (toType.Oid == types.T_binary || toType.Oid == types.T_varbinary) && len(v) > destLen {
+				return formatCastError(ctx, from.GetSourceVector(), totype, fmt.Sprintf(
+					"Src length %v is larger than Dest length %v", len(s), destLen))
+			}
+			if toType.Oid == types.T_binary && len(v) < destLen {
+				add0 := destLen - len(v)
 				for ; add0 != 0; add0-- {
 					v = append(v, 0)
 				}

@@ -36,6 +36,13 @@ type StrMax struct {
 
 type UuidMax struct {
 }
+type Enum1Max struct {
+	Et *types.Type
+}
+
+type Enum2Max struct {
+	Et *types.Type
+}
 
 func MaxReturnType(typs []types.Type) types.Type {
 	return typs[0]
@@ -267,5 +274,106 @@ func (m *UuidMax) MarshalBinary() ([]byte, error) {
 }
 
 func (m *UuidMax) UnmarshalBinary(data []byte) error {
+	return nil
+}
+
+func NewEnum1Max(typ *types.Type) *Enum1Max {
+	return &Enum1Max{Et: typ}
+}
+
+func NewEnum2Max(typ *types.Type) *Enum2Max {
+	return &Enum2Max{Et: typ}
+}
+
+func (e *Enum1Max) Grows(_ int) {
+}
+
+func (e *Enum2Max) Grows(_ int) {
+
+}
+
+func (e *Enum1Max) Eval(vs []types.Enum1) []types.Enum1 {
+	return vs
+}
+
+func (e *Enum2Max) Eval(vs []types.Enum2) []types.Enum2 {
+	return vs
+}
+
+func (e *Enum1Max) Fill(_ int64, value types.Enum1, ov types.Enum1, _ int64, isEmpty bool, isNull bool) (types.Enum1, bool) {
+	if isEmpty {
+		if !isNull {
+			return value, false
+		}
+		return value, true
+	}
+	if !isNull {
+		fed, _ := value.ToString(e.Et)
+		filled, _ := ov.ToString(e.Et)
+		if fed > filled || isEmpty {
+			return value, false
+		}
+	}
+	return ov, isEmpty
+
+}
+func (e *Enum1Max) Merge(_ int64, _ int64, x types.Enum1, y types.Enum1, xEmpty bool, yEmpty bool, _ any) (types.Enum1, bool) {
+	if !yEmpty {
+		if !xEmpty {
+			sx, _ := x.ToString(e.Et)
+			sy, _ := y.ToString(e.Et)
+			if sx > sy {
+				return x, false
+			}
+		}
+		return y, false
+	}
+	return x, xEmpty
+}
+
+func (e *Enum2Max) Fill(_ int64, value types.Enum2, ov types.Enum2, _ int64, isEmpty bool, isNull bool) (types.Enum2, bool) {
+	if isEmpty {
+		if !isNull {
+			return value, false
+		}
+		return value, true
+	}
+	if !isNull {
+		fed, _ := value.ToString(e.Et)
+		filled, _ := ov.ToString(e.Et)
+		if fed > filled || isEmpty {
+			return value, false
+		}
+	}
+	return ov, isEmpty
+
+}
+func (e *Enum2Max) Merge(_ int64, _ int64, x types.Enum2, y types.Enum2, xEmpty bool, yEmpty bool, _ any) (types.Enum2, bool) {
+	if !yEmpty {
+		if !xEmpty {
+			sx, _ := x.ToString(e.Et)
+			sy, _ := y.ToString(e.Et)
+			if sx > sy {
+				return x, false
+			}
+		}
+		return y, false
+	}
+	return x, xEmpty
+}
+
+func (e *Enum1Max) MarshalBinary() ([]byte, error) {
+	return nil, nil
+}
+
+func (m *Enum1Max) UnmarshalBinary(data []byte) error {
+	return nil
+}
+
+func (e *Enum2Max) MarshalBinary() ([]byte, error) {
+	return nil, nil
+}
+
+func (m *Enum2Max) UnmarshalBinary(data []byte) error {
 	return nil
 }

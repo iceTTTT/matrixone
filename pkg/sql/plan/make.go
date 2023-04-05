@@ -302,9 +302,10 @@ var MakePlan2Type = makePlan2Type
 
 func makePlan2Type(typ *types.Type) *plan.Type {
 	return &plan.Type{
-		Id:    int32(typ.Oid),
-		Width: typ.Width,
-		Scale: typ.Scale,
+		Id:         int32(typ.Oid),
+		Width:      typ.Width,
+		Scale:      typ.Scale,
+		EnumValues: typ.EnumValues,
 	}
 }
 
@@ -312,12 +313,16 @@ var MakeTypeByPlan2Type = makeTypeByPlan2Type
 
 func makeTypeByPlan2Type(typ *plan.Type) types.Type {
 	oid := types.T(typ.Id)
-	return types.New(oid, typ.Width, typ.Scale)
+	rtyp := types.New(oid, typ.Width, typ.Scale)
+	rtyp.EnumValues = typ.EnumValues
+	return rtyp
 }
 
 var MakeTypeByPlan2Expr = makeTypeByPlan2Expr
 
 func makeTypeByPlan2Expr(expr *plan.Expr) types.Type {
 	oid := types.T(expr.Typ.Id)
-	return types.New(oid, expr.Typ.Width, expr.Typ.Scale)
+	rtyp := types.New(oid, expr.Typ.Width, expr.Typ.Scale)
+	rtyp.EnumValues = expr.Typ.EnumValues
+	return rtyp
 }

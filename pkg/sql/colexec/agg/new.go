@@ -127,6 +127,10 @@ func newCount(typ types.Type, dist bool, isStar bool) Agg[any] {
 		return newGenericCount[[]byte](typ, dist, isStar)
 	case types.T_varbinary:
 		return newGenericCount[[]byte](typ, dist, isStar)
+	case types.T_enum1:
+		return newGenericCount[types.Enum1](typ, dist, isStar)
+	case types.T_enum2:
+		return newGenericCount[types.Enum2](typ, dist, isStar)
 	case types.T_date:
 		return newGenericCount[types.Date](typ, dist, isStar)
 	case types.T_datetime:
@@ -181,6 +185,10 @@ func newAnyValue(typ types.Type, dist bool) Agg[any] {
 		return newGenericAnyValue[[]byte](typ, dist)
 	case types.T_text:
 		return newGenericApproxcd[[]byte](typ, dist)
+	case types.T_enum1:
+		return newGenericAnyValue[types.Enum1](typ, dist)
+	case types.T_enum2:
+		return newGenericAnyValue[types.Enum2](typ, dist)
 	case types.T_date:
 		return newGenericAnyValue[types.Date](typ, dist)
 	case types.T_datetime:
@@ -302,7 +310,18 @@ func newMax(typ types.Type, dist bool) Agg[any] {
 	case types.T_float32:
 		return newGenericMax[float32](typ, dist)
 	case types.T_float64:
-		return newGenericMax[float64](typ, dist)
+	case types.T_enum1:
+		aggPriv := NewEnum1Max(&typ)
+		if dist {
+			return NewUnaryDistAgg(AggregateMax, aggPriv, false, typ, MaxReturnType([]types.Type{typ}), aggPriv.Grows, aggPriv.Eval, aggPriv.Merge, aggPriv.Fill)
+		}
+		return NewUnaryAgg(AggregateMax, aggPriv, false, typ, MaxReturnType([]types.Type{typ}), aggPriv.Grows, aggPriv.Eval, aggPriv.Merge, aggPriv.Fill, nil)
+	case types.T_enum2:
+		aggPriv := NewEnum2Max(&typ)
+		if dist {
+			return NewUnaryDistAgg(AggregateMax, aggPriv, false, typ, MaxReturnType([]types.Type{typ}), aggPriv.Grows, aggPriv.Eval, aggPriv.Merge, aggPriv.Fill)
+		}
+		return NewUnaryAgg(AggregateMax, aggPriv, false, typ, MaxReturnType([]types.Type{typ}), aggPriv.Grows, aggPriv.Eval, aggPriv.Merge, aggPriv.Fill, nil)
 	case types.T_binary:
 		aggPriv := NewStrMax()
 		if dist {
@@ -374,7 +393,6 @@ func newMin(typ types.Type, dist bool) Agg[any] {
 	case types.T_bool:
 		aggPriv := NewBoolMin()
 		if dist {
-			return NewUnaryDistAgg(AggregateMin, aggPriv, false, typ, MinReturnType([]types.Type{typ}), aggPriv.Grows, aggPriv.Eval, aggPriv.Merge, aggPriv.Fill)
 		}
 		return NewUnaryAgg(AggregateMin, aggPriv, false, typ, MinReturnType([]types.Type{typ}), aggPriv.Grows, aggPriv.Eval, aggPriv.Merge, aggPriv.Fill, nil)
 	case types.T_int8:
@@ -397,6 +415,18 @@ func newMin(typ types.Type, dist bool) Agg[any] {
 		return newGenericMin[float32](typ, dist)
 	case types.T_float64:
 		return newGenericMin[float64](typ, dist)
+	case types.T_enum1:
+		aggPriv := NewEnum1Min(&typ)
+		if dist {
+			return NewUnaryDistAgg(AggregateMin, aggPriv, false, typ, MinReturnType([]types.Type{typ}), aggPriv.Grows, aggPriv.Eval, aggPriv.Merge, aggPriv.Fill)
+		}
+		return NewUnaryAgg(AggregateMin, aggPriv, false, typ, MinReturnType([]types.Type{typ}), aggPriv.Grows, aggPriv.Eval, aggPriv.Merge, aggPriv.Fill, nil)
+	case types.T_enum2:
+		aggPriv := NewEnum2Min(&typ)
+		if dist {
+			return NewUnaryDistAgg(AggregateMin, aggPriv, false, typ, MinReturnType([]types.Type{typ}), aggPriv.Grows, aggPriv.Eval, aggPriv.Merge, aggPriv.Fill)
+		}
+		return NewUnaryAgg(AggregateMin, aggPriv, false, typ, MinReturnType([]types.Type{typ}), aggPriv.Grows, aggPriv.Eval, aggPriv.Merge, aggPriv.Fill, nil)
 	case types.T_binary:
 		aggPriv := NewStrMin()
 		if dist {

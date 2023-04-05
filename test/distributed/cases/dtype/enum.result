@@ -2,7 +2,7 @@ drop table if exists t1;
 create table t1(a enum('xs','s','m','l','xl'));
 insert into t1 values(1);
 insert into t1 values(6);
-invalid input: Insert value is bigger than 5
+Data truncation: data out of range: data type Enum, index 6
 insert into t1 values('xl');
 insert into t1 values('c');
 invalid input: Insert string is not in the enum's string list
@@ -10,3 +10,23 @@ select * from t1;
 a
 xs
 xl
+drop table t1;
+create table t1(a enum('xs','s','m','l','xl'));
+insert into t1 values('xs'),('s'),('m');
+create table t2(a int);
+insert into t2 values(2),(3);
+select * from t1 join t2 on t1.a = t2.a;
+a    a
+s    2
+m    3
+create table t3(a enum('x','m'));
+insert into t3 values('x'),('m');
+select * from t1 join t3 on t1.a = t3.a;
+a    a
+m    m
+select max(a) from t1;
+max(a)
+xs
+select group_concat(a) from t1;
+group_concat(a, ,)
+xs,s,m

@@ -265,3 +265,28 @@ func BenchmarkEncodeSliceFloat64(b *testing.B) {
 		}
 	}
 }
+
+func BenchmarkEncodeType(b *testing.B) {
+	v := New(T_enum1, 0, 0)
+	v.EnumValues = []string{"abcdef", "uvwxyz", "星河", "清梦", "matrixone", "mmmmmmmm"}
+	for i := 0; i < b.N; i++ {
+		x, _ := EncodeType(&v)
+		y := DecodeType(x)
+		if !v.TypeEqual(y) {
+			panic("Encode decode error")
+		}
+	}
+}
+
+func BenchmarkEncode(b *testing.B) {
+	var y Type
+	v := New(T_enum1, 0, 0)
+	v.EnumValues = []string{"abcdef", "uvwxyz", "星河", "清梦", "matrixone", "mmmmmmmm"}
+	for i := 0; i < b.N; i++ {
+		x, _ := Encode(v)
+		_ = Decode(x, &y)
+		if !v.TypeEqual(y) {
+			panic("Encode decode error")
+		}
+	}
+}

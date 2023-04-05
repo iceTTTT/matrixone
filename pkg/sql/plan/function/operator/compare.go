@@ -27,7 +27,7 @@ import (
 )
 
 type compareT interface {
-	constraints.Integer | constraints.Float | bool |
+	constraints.Integer | constraints.Float | bool | types.Enum |
 		types.Date | types.Time | types.Datetime | types.Timestamp
 }
 

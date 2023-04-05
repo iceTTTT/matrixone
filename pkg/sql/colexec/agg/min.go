@@ -37,6 +37,14 @@ type StrMin struct {
 type UuidMin struct {
 }
 
+type Enum1Min struct {
+	Et *types.Type
+}
+
+type Enum2Min struct {
+	Et *types.Type
+}
+
 func MinReturnType(typs []types.Type) types.Type {
 	return typs[0]
 }
@@ -267,5 +275,106 @@ func (m *UuidMin) MarshalBinary() ([]byte, error) {
 }
 
 func (m *UuidMin) UnmarshalBinary(data []byte) error {
+	return nil
+}
+
+func NewEnum1Min(typ *types.Type) *Enum1Min {
+	return &Enum1Min{Et: typ}
+}
+
+func NewEnum2Min(typ *types.Type) *Enum2Min {
+	return &Enum2Min{Et: typ}
+}
+
+func (e *Enum1Min) Grows(_ int) {
+}
+
+func (e *Enum2Min) Grows(_ int) {
+
+}
+
+func (e *Enum1Min) Eval(vs []types.Enum1) []types.Enum1 {
+	return vs
+}
+
+func (e *Enum2Min) Eval(vs []types.Enum2) []types.Enum2 {
+	return vs
+}
+
+func (e *Enum1Min) Fill(_ int64, value types.Enum1, ov types.Enum1, _ int64, isEmpty bool, isNull bool) (types.Enum1, bool) {
+	if isEmpty {
+		if !isNull {
+			return value, false
+		}
+		return value, true
+	}
+	if !isNull {
+		fed, _ := value.ToString(e.Et)
+		filled, _ := ov.ToString(e.Et)
+		if fed < filled || isEmpty {
+			return value, false
+		}
+	}
+	return ov, isEmpty
+
+}
+func (e *Enum1Min) Merge(_ int64, _ int64, x types.Enum1, y types.Enum1, xEmpty bool, yEmpty bool, _ any) (types.Enum1, bool) {
+	if !yEmpty {
+		if !xEmpty {
+			sx, _ := x.ToString(e.Et)
+			sy, _ := y.ToString(e.Et)
+			if sx < sy {
+				return x, false
+			}
+		}
+		return y, false
+	}
+	return x, xEmpty
+}
+
+func (e *Enum2Min) Fill(_ int64, value types.Enum2, ov types.Enum2, _ int64, isEmpty bool, isNull bool) (types.Enum2, bool) {
+	if isEmpty {
+		if !isNull {
+			return value, false
+		}
+		return value, true
+	}
+	if !isNull {
+		fed, _ := value.ToString(e.Et)
+		filled, _ := ov.ToString(e.Et)
+		if fed < filled || isEmpty {
+			return value, false
+		}
+	}
+	return ov, isEmpty
+
+}
+func (e *Enum2Min) Merge(_ int64, _ int64, x types.Enum2, y types.Enum2, xEmpty bool, yEmpty bool, _ any) (types.Enum2, bool) {
+	if !yEmpty {
+		if !xEmpty {
+			sx, _ := x.ToString(e.Et)
+			sy, _ := y.ToString(e.Et)
+			if sx < sy {
+				return x, false
+			}
+		}
+		return y, false
+	}
+	return x, xEmpty
+}
+
+func (e *Enum1Min) MarshalBinary() ([]byte, error) {
+	return nil, nil
+}
+
+func (m *Enum1Min) UnmarshalBinary(data []byte) error {
+	return nil
+}
+
+func (e *Enum2Min) MarshalBinary() ([]byte, error) {
+	return nil, nil
+}
+
+func (m *Enum2Min) UnmarshalBinary(data []byte) error {
 	return nil
 }

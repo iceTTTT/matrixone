@@ -1126,6 +1126,26 @@ var operators = map[int]Functions{
 				ReturnTyp: types.T_bool,
 				Fn:        operator.INString,
 			},
+			{
+				Index: 24,
+				Args: []types.T{
+					types.T_enum1,
+					types.T_tuple,
+				},
+				ReturnTyp: types.T_bool,
+				// The Fn is not used.
+				Fn: operator.INString,
+			},
+			{
+				Index: 25,
+				Args: []types.T{
+					types.T_enum2,
+					types.T_tuple,
+				},
+				ReturnTyp: types.T_bool,
+				// The Fn is not used.
+				Fn: operator.INString,
+			},
 		},
 	},
 
@@ -1350,6 +1370,26 @@ var operators = map[int]Functions{
 				},
 				ReturnTyp: types.T_bool,
 				Fn:        operator.NotINString,
+			},
+			{
+				Index: 24,
+				Args: []types.T{
+					types.T_enum1,
+					types.T_tuple,
+				},
+				ReturnTyp: types.T_bool,
+				// The Fn is not used.
+				Fn: operator.NotINString,
+			},
+			{
+				Index: 25,
+				Args: []types.T{
+					types.T_enum2,
+					types.T_tuple,
+				},
+				ReturnTyp: types.T_bool,
+				// The Fn is not used.
+				Fn: operator.NotINString,
 			},
 		},
 	},

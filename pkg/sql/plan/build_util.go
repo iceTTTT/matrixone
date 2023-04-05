@@ -17,6 +17,7 @@ package plan
 import (
 	"context"
 	"fmt"
+	"go/constant"
 	"strings"
 
 	"github.com/matrixorigin/matrixone/pkg/catalog"
@@ -174,6 +175,16 @@ func getTypeFromAst(ctx context.Context, typ tree.ResolvableTypeReference) (*pla
 			if lens == 0 {
 				return nil, moerr.NewInvalidInput(ctx, "Should assign string values to enum type")
 			}
+			// Check duplicate.
+			cm := make(map[string]bool)
+			for i := range n.InternalType.EnumValues {
+				if _, e := cm[n.InternalType.EnumValues[i]]; e == true {
+					return nil, moerr.NewInvalidInput(ctx, "Enum column got duplicate values")
+				} else {
+					cm[n.InternalType.EnumValues[i]] = true
+				}
+			}
+
 			if lens <= 255 {
 				return &plan.Type{Id: int32(types.T_enum1), EnumValues: n.InternalType.EnumValues}, nil
 			}
@@ -207,6 +218,12 @@ func buildDefaultExpr(col *tree.ColumnTableDef, typ *plan.Type, proc *process.Pr
 			return nil, moerr.NewNotSupported(proc.Ctx, fmt.Sprintf("JSON column '%s' cannot have default value", col.Name.Parts[0]))
 		}
 	}
+
+	// Not null make defaultexpr for enum type.
+	if !nullAbility && (typ.Id == int32(types.T_enum1) || typ.Id == int32(types.T_enum2)) {
+		expr = makeEnumDefaulExpr()
+	}
+
 	if !nullAbility && isNullAstExpr(expr) {
 		return nil, moerr.NewInvalidInput(proc.Ctx, "invalid default value for column '%s'", col.Name.Parts[0])
 	}
@@ -455,4 +472,12 @@ func checkTableColumnNameValid(name string) bool {
 		return false
 	}
 	return true
+}
+
+// Make default expr for enum.
+func makeEnumDefaulExpr() *tree.NumVal {
+	nv := &tree.NumVal{}
+	nv.ValType = tree.P_int64
+	nv.Value = constant.MakeInt64(1)
+	return nv
 }

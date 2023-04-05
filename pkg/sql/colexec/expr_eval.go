@@ -241,6 +241,7 @@ func EvalExpr(bat *batch.Batch, proc *process.Process, expr *plan.Expr) (*vector
 		if vec.IsConstNull() {
 			vec.SetType(types.New(types.T(expr.Typ.Id), expr.Typ.Width, expr.Typ.Scale))
 		}
+		vec.GetType().EnumValues = expr.Typ.EnumValues
 		return vec, nil
 	case *plan.Expr_List:
 		return getConstVecInList(proc.Ctx, proc, t.List.List)

@@ -61,7 +61,7 @@ func initTypeCheckRelated() {
 		types.T_date, types.T_time, types.T_datetime, types.T_timestamp,
 		types.T_char, types.T_varchar, types.T_blob, types.T_text,
 		types.T_binary, types.T_varbinary,
-		types.T_decimal64, types.T_decimal128,
+		types.T_decimal64, types.T_decimal128, types.T_enum1, types.T_enum2,
 	}
 	numbers := []types.T{ // numbers without decimal
 		types.T_int8, types.T_int16, types.T_int32, types.T_int64,
@@ -73,6 +73,7 @@ func initTypeCheckRelated() {
 	strings := []types.T{types.T_char, types.T_varchar, types.T_binary,
 		types.T_varbinary, types.T_blob, types.T_text}
 	decimals := []types.T{types.T_decimal64, types.T_decimal128}
+	enums := []types.T{types.T_enum1, types.T_enum2}
 
 	// init binaryTable
 	var convertRuleForBinaryTable [][4]types.T // left-input, right-input, left-target, right-target
@@ -222,6 +223,27 @@ func initTypeCheckRelated() {
 				convertRuleForBinaryTable = append(convertRuleForBinaryTable, [4]types.T{t1, t2, t2, t2})
 				convertRuleForBinaryTable = append(convertRuleForBinaryTable, [4]types.T{t2, t1, t2, t2})
 			}
+		}
+
+		{
+			// Enum related binary-operators rule.
+			for _, t1 := range enums {
+				// Meet numeric.
+				for _, t2 := range numbers {
+					convertRuleForBinaryTable = append(convertRuleForBinaryTable, [4]types.T{t1, t2, t2, t2})
+					convertRuleForBinaryTable = append(convertRuleForBinaryTable, [4]types.T{t2, t1, t2, t2})
+				}
+				// Meet string.
+				for _, t2 := range strings {
+					convertRuleForBinaryTable = append(convertRuleForBinaryTable, [4]types.T{t2, t1, t2, t2})
+					convertRuleForBinaryTable = append(convertRuleForBinaryTable, [4]types.T{t1, t2, t2, t2})
+				}
+				// Enum inner operating as varchar.
+				for _, t2 := range enums {
+					convertRuleForBinaryTable = append(convertRuleForBinaryTable, [4]types.T{t1, t2, types.T_varchar, types.T_varchar})
+				}
+			}
+
 		}
 	}
 
@@ -457,6 +479,17 @@ func initTypeCheckRelated() {
 	{ // uuid
 		for _, t := range strings {
 			castTable[types.T_uuid][t] = true
+		}
+	}
+
+	{ // enum
+		for _, t1 := range enums {
+			for _, t2 := range strings {
+				castTable[t1][t2] = true
+			}
+			for _, t2 := range numbers {
+				castTable[t1][t2] = true
+			}
 		}
 	}
 

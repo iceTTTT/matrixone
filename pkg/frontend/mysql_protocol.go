@@ -1699,7 +1699,7 @@ func setColFlag(column *MysqlColumn) {
 func setCharacter(column *MysqlColumn) {
 	switch column.columnType {
 	// blob type should use 0x3f to show the binary data
-	case defines.MYSQL_TYPE_VARCHAR, defines.MYSQL_TYPE_STRING, defines.MYSQL_TYPE_TEXT:
+	case defines.MYSQL_TYPE_VARCHAR, defines.MYSQL_TYPE_STRING, defines.MYSQL_TYPE_TEXT, defines.MYSQL_TYPE_ENUM:
 		column.SetCharset(0x21)
 	default:
 		column.SetCharset(0x3f)
@@ -1913,7 +1913,6 @@ func (mp *MysqlProtocolImpl) makeResultSetBinaryRow(data []byte, mrs *MysqlResul
 				default:
 				}
 			}
-
 		// Binary/varbinary will be sent out as varchar type.
 		case defines.MYSQL_TYPE_VARCHAR, defines.MYSQL_TYPE_VAR_STRING, defines.MYSQL_TYPE_STRING,
 			defines.MYSQL_TYPE_BLOB, defines.MYSQL_TYPE_TEXT, defines.MYSQL_TYPE_JSON:
@@ -2093,13 +2092,9 @@ func (mp *MysqlProtocolImpl) makeResultSetTextRow(data []byte, mrs *MysqlResultS
 					data = mp.appendStringLenEncOfInt64(data, value)
 				}
 			}
-		case defines.MYSQL_TYPE_ENUM:
-			if value, err2 := mrs.GetString(ctx, r, i); err2 != nil {
-				return nil, err2
-			} else {
-				data = mp.appendStringLenEnc(data, value)
-			}
 		// Binary/varbinary will be sent out as varchar type.
+		// Enum is sent out as string type, the flag ENUM_FLAG.
+		// indicates it is an enum.
 		case defines.MYSQL_TYPE_VARCHAR, defines.MYSQL_TYPE_VAR_STRING, defines.MYSQL_TYPE_STRING,
 			defines.MYSQL_TYPE_BLOB, defines.MYSQL_TYPE_TEXT:
 			if value, err2 := mrs.GetString(ctx, r, i); err2 != nil {

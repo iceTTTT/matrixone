@@ -223,6 +223,20 @@ func Sort(desc, nullsLast, hasNull bool, os []int64, vec *vector.Vector, strCol 
 		} else {
 			genericSort(strCol, os, genericGreater[string])
 		}
+	case types.T_enum1:
+		col := vector.MustFixedCol[types.Enum1](vec)
+		if !desc {
+			genericSort(col, os, genericLess[types.Enum1])
+		} else {
+			genericSort(col, os, genericGreater[types.Enum1])
+		}
+	case types.T_enum2:
+		col := vector.MustFixedCol[types.Enum2](vec)
+		if !desc {
+			genericSort(col, os, genericLess[types.Enum2])
+		} else {
+			genericSort(col, os, genericGreater[types.Enum2])
+		}
 	}
 }
 
