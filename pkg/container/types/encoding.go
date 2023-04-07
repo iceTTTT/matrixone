@@ -100,7 +100,7 @@ func DecodeJson(buf []byte) bytejson.ByteJson {
 
 func EncodeType(v *Type) ([]byte, int32) {
 	n := int32(TSize - SSize)
-	dat := unsafe.Slice((*byte)(unsafe.Pointer(v)), TSize-SSize)
+	dat := unsafe.Slice((*byte)(unsafe.Pointer(v)), TSize)
 	// For enum type encode the string list.
 	if v.EnumValues != nil {
 		sdat := EncodeStringSlice(v.EnumValues)
@@ -111,13 +111,16 @@ func EncodeType(v *Type) ([]byte, int32) {
 }
 
 func DecodeType(v []byte) Type {
-	basedata := v[:TSize-SSize]
-	typdata := make([]byte, 0, TSize)
-	typdata = append(typdata, basedata...)
-	mock := []string(nil)
-	typdata = append(typdata, unsafe.Slice((*byte)(unsafe.Pointer(&mock)), SSize)...)
-	basetyp := *(*Type)(unsafe.Pointer(&typdata[0]))
-	v = v[TSize-SSize:]
+	basedata := v[:TSize]
+	// typdata := make([]byte, 0, TSize)
+	// typdata = append(typdata, basedata...)
+	// mock := []string(nil)
+	// typdata = append(typdata, unsafe.Slice((*byte)(unsafe.Pointer(&mock)), SSize)...)
+	*(*uint64)(unsafe.Pointer(&basedata[16])) = 0
+	*(*uint64)(unsafe.Pointer(&basedata[24])) = 0
+	*(*uint64)(unsafe.Pointer(&basedata[32])) = 0
+	basetyp := *(*Type)(unsafe.Pointer(&basedata[0]))
+	v = v[TSize:]
 	if len(v) != 0 {
 		basetyp.EnumValues = DecodeStringSlice(v)
 	}
