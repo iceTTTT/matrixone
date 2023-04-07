@@ -18,7 +18,6 @@ import (
 	"fmt"
 	"math"
 	"testing"
-	"unsafe"
 )
 
 func TestEncodeInt8(t *testing.T) {
@@ -266,78 +265,38 @@ func BenchmarkEncodeSliceFloat64(b *testing.B) {
 		}
 	}
 }
-
 func BenchmarkEncodeType(b *testing.B) {
-	v := New(T_enum1, 0, 0)
+	v := New(10, 10, 10)
 	for i := 0; i < b.N; i++ {
 		x, _ := EncodeType(&v)
 		y := DecodeType(x)
-		if !v.TypeEqual(y) {
+		if !y.TypeEqual(v) {
+			panic("Encode decode error")
+		}
+	}
+}
+func BenchmarkEncodeTypeWithEnum(b *testing.B) {
+	v := New(10, 10, 10)
+	v.EnumValues = []string{"asdadfasdf", "asdfadsfadf", "asdfasdfadfa",
+		"asdfajfalksdjflka", "kkkkkkkkkkkkkkmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"}
+	for i := 0; i < b.N; i++ {
+		x, _ := EncodeType(&v)
+		y := DecodeType(x)
+		if !y.TypeEqual(v) {
 			panic("Encode decode error")
 		}
 	}
 }
 
-func BenchmarkEncode(b *testing.B) {
-	var y Type
-	v := New(T_enum1, 0, 0)
-	v.EnumValues = []string{"abcdef", "uvwxyz", "一二", "三四", "matrixone", "mmmmmmmm"}
+func BenchmarkEncodeTypeGob(b *testing.B) {
+	v := New(10, 10, 10)
+	v.EnumValues = []string{"asdadfasdf", "asdfadsfadf", "asdfasdfadfa",
+		"asdfajfalksdjflka", "kkkkkkkkkkkkkkmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"}
 	for i := 0; i < b.N; i++ {
 		x, _ := Encode(v)
-		_ = Decode(x, &y)
-		if !v.TypeEqual(y) {
-			panic("Encode decode error")
-		}
-	}
-}
-
-type MockType struct {
-	Oid        T
-	Charset    uint8
-	dummy1     uint8
-	dummy2     uint8
-	Size       int32
-	Width      int32
-	Scale      int32
-	EnumValues *[]string
-}
-
-const (
-	MTSize int = int(unsafe.Sizeof(MockType{}))
-	MSSize int = int(unsafe.Sizeof(&[]string{}))
-)
-
-func EncodeType1(v *MockType) ([]byte, int32) {
-	dat := unsafe.Slice((*byte)(unsafe.Pointer(v)), MTSize)
-	// For enum type encode the string list.
-	if v.EnumValues != nil && *v.EnumValues != nil {
-		sdat := EncodeStringSlice(*v.EnumValues)
-		dat = append(dat, sdat...)
-	}
-	return dat, 0
-}
-
-func DecodeType1(v []byte) MockType {
-	basedata := v[:MTSize]
-	*(*uint64)(unsafe.Pointer(&basedata[16])) = 0
-	basetyp := *(*MockType)(unsafe.Pointer(&basedata[0]))
-	v = v[MTSize:]
-	if len(v) != 0 {
-		ev := DecodeStringSlice(v)
-		basetyp.EnumValues = &ev
-	}
-	return basetyp
-}
-
-func BenchmarkEncodeMockType(b *testing.B) {
-	v := MockType{}
-	v.Oid = 1
-	v.Scale = 2
-	v.Width = 3
-	for i := 0; i < b.N; i++ {
-		x, _ := EncodeType1(&v)
-		y := DecodeType1(x)
-		if v.Oid != y.Oid {
+		var y Type
+		Decode(x, &y)
+		if !y.TypeEqual(v) {
 			panic("Encode decode error")
 		}
 	}

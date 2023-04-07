@@ -99,7 +99,7 @@ func DecodeJson(buf []byte) bytejson.ByteJson {
 }
 
 func EncodeType(v *Type) ([]byte, int32) {
-	n := int32(TSize - SSize)
+	n := int32(TSize)
 	dat := unsafe.Slice((*byte)(unsafe.Pointer(v)), TSize)
 	// For enum type encode the string list.
 	if v.EnumValues != nil {
@@ -110,15 +110,11 @@ func EncodeType(v *Type) ([]byte, int32) {
 	return dat, n
 }
 
+//go:nocheckptr
 func DecodeType(v []byte) Type {
 	basedata := v[:TSize]
-	// typdata := make([]byte, 0, TSize)
-	// typdata = append(typdata, basedata...)
-	// mock := []string(nil)
-	// typdata = append(typdata, unsafe.Slice((*byte)(unsafe.Pointer(&mock)), SSize)...)
-	*(*uint64)(unsafe.Pointer(&basedata[16])) = 0
-	*(*uint64)(unsafe.Pointer(&basedata[24])) = 0
-	*(*uint64)(unsafe.Pointer(&basedata[32])) = 0
+	start := TSize - SSize
+	*(*[]string)(unsafe.Pointer(&basedata[start])) = nil
 	basetyp := *(*Type)(unsafe.Pointer(&basedata[0]))
 	v = v[TSize:]
 	if len(v) != 0 {

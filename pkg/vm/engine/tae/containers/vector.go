@@ -36,9 +36,6 @@ type vector[T any] struct {
 
 	// Used in Append()
 	mpool *mpool.MPool
-
-	// isOwner is used to implement the SharedMemory Logic from the previous DN vector implementation.
-	isOwner bool
 }
 
 func NewVector[T any](typ types.Type, opts ...Options) *vector[T] {
@@ -55,9 +52,6 @@ func NewVector[T any](typ types.Type, opts ...Options) *vector[T] {
 		alloc = common.DefaultAllocator
 	}
 	vec.mpool = alloc
-
-	// So far no mpool allocation. So isOwner defaults to false.
-	vec.isOwner = false
 
 	return vec
 }
@@ -200,14 +194,13 @@ func (vec *vector[T]) Close() {
 }
 
 func (vec *vector[T]) releaseDownstream() {
-	if vec.isOwner {
+	if !vec.downstreamVector.NeedDup() {
 		vec.downstreamVector.Free(vec.mpool)
-		vec.isOwner = false
 	}
 }
 
 func (vec *vector[T]) Allocated() int {
-	if !vec.isOwner {
+	if vec.downstreamVector.NeedDup() {
 		return 0
 	}
 	return vec.downstreamVector.Size()
@@ -215,29 +208,27 @@ func (vec *vector[T]) Allocated() int {
 
 // When a new Append() is happening on a SharedMemory vector, we allocate the data[] from the mpool.
 func (vec *vector[T]) tryCoW() {
-
-	if !vec.isOwner {
-		newCnVector, err := vec.downstreamVector.Dup(vec.mpool)
-		if err != nil {
-			panic(err)
-		}
-		vec.downstreamVector = newCnVector
-		vec.isOwner = true
+	if !vec.downstreamVector.NeedDup() {
+		return
 	}
+
+	newCnVector, err := vec.downstreamVector.Dup(vec.mpool)
+	if err != nil {
+		panic(err)
+	}
+	vec.downstreamVector = newCnVector
 }
 
 func (vec *vector[T]) Window(offset, length int) Vector {
-
-	// In DN Vector, we are using SharedReference for Window.
-	// In CN Vector, we are creating a new Clone for Window.
-	// So inorder to retain the nature of DN vector, we had use vectorWindow Adapter.
-	return &vectorWindow[T]{
-		ref: vec,
-		windowBase: &windowBase{
-			offset: offset,
-			length: length,
-		},
+	var err error
+	win := new(vector[T])
+	win.mpool = vec.mpool
+	win.downstreamVector, err = vec.downstreamVector.Window(offset, offset+length)
+	if err != nil {
+		panic(err)
 	}
+
+	return win
 }
 
 func (vec *vector[T]) CloneWindow(offset, length int, allocator ...*mpool.MPool) Vector {
@@ -254,7 +245,6 @@ func (vec *vector[T]) CloneWindow(offset, length int, allocator ...*mpool.MPool)
 	if err != nil {
 		panic(err)
 	}
-	cloned.isOwner = true
 
 	return cloned
 }
@@ -268,7 +258,7 @@ func (vec *vector[T]) ExtendWithOffset(src Vector, srcOff, srcLen int) {
 	for j := 0; j < srcLen; j++ {
 		sels[j] = int32(j) + int32(srcOff)
 	}
-	err := vec.downstreamVector.Union(src.getDownstreamVector(), sels, vec.GetAllocator())
+	err := vec.downstreamVector.Union(src.GetDownstreamVector(), sels, vec.GetAllocator())
 	if err != nil {
 		panic(err)
 	}
@@ -373,12 +363,11 @@ func (vec *vector[T]) Compact(deletes *roaring.Bitmap) {
 	vec.downstreamVector.Shrink(dels, true)
 }
 
-func (vec *vector[T]) getDownstreamVector() *cnVector.Vector {
+func (vec *vector[T]) GetDownstreamVector() *cnVector.Vector {
 	return vec.downstreamVector
 }
 
 func (vec *vector[T]) setDownstreamVector(dsVec *cnVector.Vector) {
-	vec.isOwner = false
 	vec.downstreamVector = dsVec
 }
 
