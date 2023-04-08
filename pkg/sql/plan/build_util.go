@@ -179,7 +179,7 @@ func getTypeFromAst(ctx context.Context, typ tree.ResolvableTypeReference) (*pla
 			cm := make(map[string]bool)
 			for i := range n.InternalType.EnumValues {
 				if _, e := cm[n.InternalType.EnumValues[i]]; e == true {
-					return nil, moerr.NewInvalidInput(ctx, "Enum column got duplicate values")
+					return nil, moerr.NewInvalidInput(ctx, "Enum column got duplicate values '%s'", n.InternalType.EnumValues[i])
 				} else {
 					cm[n.InternalType.EnumValues[i]] = true
 				}
