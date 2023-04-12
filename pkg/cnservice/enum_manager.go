@@ -27,8 +27,7 @@ const (
 type EKey [N]byte
 
 // 1. Init enum: lock the enummanager and realse after init.
-// 2. Delete enum: eviting or time.
-// 3. Common usage.Just get the map.(drop table or alter table?:)
+// 2. Common usage.Just get the map.(drop table or alter table?:)
 type EnumManager struct {
 	// Long standing bghandler.
 	// Getting the specific enum values using att_relname_id from the mo_columns table.
@@ -44,7 +43,7 @@ type EnumManager struct {
 }
 
 // Passing.
-// Grace.
+// Gracefully. solution: runtime service
 
 func (em *EnumManager) GetEnums(tableId uint64, enumId int) (enumstoi map[string]uint16, enumitos []string) {
 	k := getKey(tableId, enumId)
