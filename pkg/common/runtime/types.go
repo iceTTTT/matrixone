@@ -32,6 +32,8 @@ const (
 	TxnMode = "txn-mode"
 	// TxnIsolation runtime default txn isolation
 	TxnIsolation = "txn-isolation"
+	// SeqService
+	SeqService = "seq-service"
 )
 
 // Runtime contains the runtime environment for a MO service. Each CN/DN/LOG service

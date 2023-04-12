@@ -275,8 +275,9 @@ type service struct {
 	moCluster              clusterservice.MOCluster
 	lockService            lockservice.LockService
 
-	stopper *stopper.Stopper
-	aicm    *defines.AutoIncrCacheManager
+	stopper    *stopper.Stopper
+	aicm       *defines.AutoIncrCacheManager
+	seqService *frontend.SeqGenerator
 
 	task struct {
 		sync.RWMutex

@@ -104,6 +104,8 @@ type Type struct {
 	Width int32
 	// Scale means number of fractional digits for decimal, timestamp, float, etc.
 	Scale int32
+
+	tabd uint64
 }
 
 type Date int32

@@ -168,3 +168,8 @@ func (proc *Process) AllocVectorOfRows(typ types.Type, nele int, nsp *nulls.Null
 func (proc *Process) WithSpanContext(sc trace.SpanContext) {
 	proc.Ctx = trace.ContextWithSpanContext(proc.Ctx, sc)
 }
+
+type SeqService interface {
+	GetNextVal(uint64, string, string, types.T) (string, error)
+	SetSeqVal(uint64, string, string, string, types.T) error
+}

@@ -20,6 +20,7 @@ import (
 
 	"github.com/matrixorigin/matrixone/pkg/catalog"
 	"github.com/matrixorigin/matrixone/pkg/common/moerr"
+	"github.com/matrixorigin/matrixone/pkg/common/runtime"
 	"github.com/matrixorigin/matrixone/pkg/container/nulls"
 	"github.com/matrixorigin/matrixone/pkg/container/types"
 	"github.com/matrixorigin/matrixone/pkg/container/vector"
@@ -47,6 +48,12 @@ func Nextval(vecs []*vector.Vector, proc *process.Process) (*vector.Vector, erro
 	tblnames := vector.MustStrCol(vecs[0])
 	restrings := make([]string, len(tblnames))
 	isNulls := make([]bool, len(tblnames))
+	var ss process.SeqService
+	if seqSrv, exists := runtime.ProcessLevelRuntime().GetGlobalVariables(runtime.SeqService); !exists {
+		return nil, moerr.NewInternalError(proc.Ctx, "Seq service not exists")
+	} else {
+		ss = seqSrv.(process.SeqService)
+	}
 
 	res, err := proc.AllocVectorOfRows(types.T_varchar.ToType(), 0, nil)
 	if err != nil {
@@ -61,7 +68,7 @@ func Nextval(vecs []*vector.Vector, proc *process.Process) (*vector.Vector, erro
 			isNulls[i] = true
 			continue
 		}
-		s, err := nextval(tblnames[i], proc, e, txn)
+		s, err := nextval(tblnames[i], proc, e, txn, ss)
 		if err != nil {
 			if err1 := RollbackTxn(e, txn, proc.Ctx); err1 != nil {
 				return nil, err1
@@ -87,7 +94,7 @@ func Nextval(vecs []*vector.Vector, proc *process.Process) (*vector.Vector, erro
 	return res, nil
 }
 
-func nextval(tblname string, proc *process.Process, e engine.Engine, txn client.TxnOperator) (string, error) {
+func nextval(tblname string, proc *process.Process, e engine.Engine, txn client.TxnOperator, ss process.SeqService) (string, error) {
 	db := proc.SessionInfo.Database
 	dbHandler, err := e.Database(proc.Ctx, db, txn)
 	if err != nil {

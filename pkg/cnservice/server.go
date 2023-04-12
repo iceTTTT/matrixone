@@ -17,8 +17,9 @@ package cnservice
 import (
 	"context"
 	"fmt"
-	"github.com/matrixorigin/matrixone/pkg/vm/engine/tae/dataio/blockio"
 	"sync"
+
+	"github.com/matrixorigin/matrixone/pkg/vm/engine/tae/dataio/blockio"
 
 	"github.com/fagongzi/goetty/v2"
 	"github.com/matrixorigin/matrixone/pkg/clusterservice"
@@ -101,6 +102,7 @@ func NewService(
 			Addr: cfg.ServiceAddress,
 		}})
 
+	srv.initSeqService(pu)
 	cfg.Frontend.SetDefaultValues()
 	cfg.Frontend.SetMaxMessageSize(uint64(cfg.RPC.MaxMessageSize))
 	frontend.InitServerVersion(pu.SV.MoVersion)
@@ -350,6 +352,18 @@ func (s *service) getHAKeeperClient() (client logservice.CNHAKeeperClient, err e
 	})
 	client = s._hakeeperClient
 	return
+}
+
+func (s *service) initSeqService(pu *config.ParameterUnit) {
+	s.seqService = &frontend.SeqGenerator{}
+	ctx := context.Background()
+	s.seqService.BgHandler = frontend.NewBackgroundHandler(ctx, ctx, nil, pu, nil)
+	s.seqService.BgMu = sync.Mutex{}
+	s.seqService.CacheSize = 3000
+	s.seqService.Ctx = ctx
+	s.seqService.SeqMutex = sync.Map{}
+	s.seqService.CachedSeq = sync.Map{}
+	runtime.ProcessLevelRuntime().SetGlobalVariables(runtime.SeqService, s.seqService)
 }
 
 func (s *service) initClusterService() {
